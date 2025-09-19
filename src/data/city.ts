@@ -17,3 +17,7 @@ export type CityCode = (typeof cities)[number]["code"];
 export function getCities() {
   return cities;
 }
+
+export function getCityInfoFromCode(cityCode: CityCode) {
+  return cities.find((city) => city.code === cityCode);
+}

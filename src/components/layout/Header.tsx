@@ -26,7 +26,7 @@ export default function Header() {
   }, [isTransparent]);
   return (
     <header
-      className={`fixed top-0 z-50 w-full ${
+      className={`fixed top-0 z-40 w-full ${
         transparentBg ? "bg-transparent" : "bg-dark-muted"
       }`}
     >
@@ -75,7 +75,7 @@ export default function Header() {
             </li>
           </ul>
         </nav>
-        <Link to="/login" className="flex items-center gap-2 primary-button">
+        <Link to="/search" className="flex items-center gap-2 primary-button">
           <IoTicketOutline />
           <span>Book Ticket</span>
         </Link>

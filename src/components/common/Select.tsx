@@ -240,7 +240,7 @@ const Select = ({
           </div>
         )}
 
-        <div className="relative h-[2.75rem] min-w-20 grow text-neutral-700/75">
+        <div className="relative h-[2.75rem] grow text-neutral-700/75">
           {!isMulti && value && !searchTerm && (
             <div className="py-3">{value.label}</div>
           )}

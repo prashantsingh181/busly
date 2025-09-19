@@ -5,7 +5,8 @@ export interface Bus {
   name: string;
   type: string; // TODO: turn this into enum
   totalSeats: number;
-  routes: BusRoute[];
+  img: string;
+  routeIds: string[];
 }
 
 export interface BookedSeat {
@@ -14,10 +15,19 @@ export interface BookedSeat {
   to: CityCode;
 }
 
-export interface BusRoute {
-  from: CityCode;
-  to: CityCode;
-  departure: string;
-  arrival: string;
+export interface Route {
+  id: string;
+  name: string;
+  stops: BusStop[];
+}
+
+export interface BusStop {
+  city: CityCode;
+  arrival: string | null;
+  departure: string | null;
   fare: number;
+}
+
+export interface BusWithRoute extends Bus {
+  routeInfo: { from: CityCode; to: CityCode; route: Route };
 }

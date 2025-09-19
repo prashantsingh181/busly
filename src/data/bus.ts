@@ -1,4 +1,5 @@
-import type { Bus } from "../types/bus";
+import type { Bus, BusWithRoute } from "../types/bus";
+import { routes } from "./busRoute";
 
 export const buses: Bus[] = [
   {
@@ -6,65 +7,64 @@ export const buses: Bus[] = [
     name: "ExpressLine Travels",
     type: "AC Sleeper",
     totalSeats: 30,
-    routes: [
-      {
-        from: "DEL",
-        to: "AGC",
-        departure: "06:00 AM",
-        arrival: "09:00 AM",
-        fare: 650,
-      },
-      {
-        from: "AGC",
-        to: "JAI",
-        departure: "09:30 AM",
-        arrival: "01:00 PM",
-        fare: 150,
-      },
-    ],
+    img: "/buses/bus1.webp",
+    routeIds: ["ROUTE1", "ROUTE2"],
   },
   {
     id: "BUS102",
     name: "InterCity Travels",
     type: "Non-AC Seater",
     totalSeats: 40,
-    routes: [
-      {
-        from: "BOM",
-        to: "THA",
-        departure: "08:30 AM",
-        arrival: "09:30 AM",
-        fare: 400,
-      },
-      {
-        from: "THA",
-        to: "PNQ",
-        departure: "09:45 AM",
-        arrival: "12:30 PM",
-        fare: 200,
-      },
-    ],
+    img: "/buses/bus2.webp",
+    routeIds: ["ROUTE3", "ROUTE4"],
   },
   {
     id: "BUS103",
     name: "Southern Comfort",
     type: "AC Sleeper",
     totalSeats: 32,
-    routes: [
-      {
-        from: "MAA",
-        to: "VLR",
-        departure: "09:00 PM",
-        arrival: "11:00 PM",
-        fare: 850,
-      },
-      {
-        from: "VLR",
-        to: "BLR",
-        departure: "11:15 PM",
-        arrival: "05:00 AM",
-        fare: 200,
-      },
-    ],
+    img: "/buses/bus4.webp",
+    routeIds: ["ROUTE5", "ROUTE6", "ROUTE1", "ROUTE2"],
   },
 ];
+
+export function filterBuses(fromCity: string, toCity: string) {
+  const filteredBuses: BusWithRoute[] = [];
+  const routesChecked = new Set();
+
+  // loop over the buses
+  buses.forEach((bus) => {
+    const { routeIds } = bus;
+
+    // loop over the routes of buses
+    for (const routeId of routeIds) {
+      // check if you have already checked for the route
+      if (routesChecked.has(routeId)) {
+        continue;
+      }
+      const route = routes.find((route) => route.id === routeId);
+      if (route) {
+        let startStopFound;
+
+        // loop over stops of route
+        for (const stop of route.stops) {
+          // if toCity is found and fromCity has already been found add bus to filtered list
+          if (startStopFound && stop.city === toCity) {
+            filteredBuses.push({
+              ...bus,
+              routeInfo: {
+                from: startStopFound.city,
+                to: stop.city,
+                route: route,
+              },
+            });
+          }
+          if (stop.city === fromCity) {
+            startStopFound = stop;
+          }
+        }
+      }
+    }
+  });
+  return filteredBuses;
+}
