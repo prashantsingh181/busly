@@ -10,7 +10,7 @@ interface BusSeatsProps {
 
 export default function BusSeats({
   bus,
-  selectedSeatNos = [5, 8],
+  selectedSeatNos,
 }: Readonly<BusSeatsProps>) {
   const { totalSeats, bookedSeats } = bus;
   const seatClassName =
@@ -22,8 +22,7 @@ export default function BusSeats({
   const seatsArray = Array.from({ length: totalSeats }, (_, i) => i + 1);
 
   function isBooked(seatNo: number) {
-    // return bookedSeats.some((seat) => seat.seatNo === seatNo);
-    return seatNo === 10;
+    return bookedSeats.some((seat) => seat.seatNo === seatNo);
   }
   function isSelected(seatNo: number) {
     return selectedSeatNos.includes(seatNo);

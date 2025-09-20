@@ -73,7 +73,7 @@ export default function Book() {
         </div>
         <StepperComponent steps={stepperSteps} currentStep={1} />
         <div className="grid grid-cols-2 gap-6 mt-6 items-start">
-          <BusSeats bus={busWithBookedSeats} />
+          <BusSeats bus={busWithBookedSeats} selectedSeatNos={[5, 6]} />
           <div className="card p-6">
             <SelectedBusAside
               bus={busWithRoute}

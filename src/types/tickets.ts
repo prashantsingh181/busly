@@ -1,5 +1,3 @@
-import type { string } from "../data/city";
-
 export interface Ticket {
   ticketId: string;
   busId: string;
@@ -13,5 +11,5 @@ interface BookedSeat {
   seatNo: number;
   passengerName: string;
   passengerAge: number;
-//   gender: "Male" | "Female";
+  //   gender: "Male" | "Female";
 }
