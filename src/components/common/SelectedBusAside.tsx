@@ -3,8 +3,9 @@ import { getCityByCityCode } from "@/data/city";
 import InfoRow from "@/components/common/InfoRow";
 import { FaLocationDot, FaMoneyBill } from "react-icons/fa6";
 import { IoTicketSharp } from "react-icons/io5";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { useNavigate } from "react-router";
+import { formatPrice } from "@/utils/formatUtils";
 
 interface SelectedBusAsideProps {
   bus: BusWithRoute;
@@ -12,7 +13,7 @@ interface SelectedBusAsideProps {
   showButton?: boolean;
 }
 
-export default function SelectedBusAside({
+function SelectedBusAside({
   bus,
   date,
   showButton = true,
@@ -67,26 +68,24 @@ export default function SelectedBusAside({
           <InfoRow
             label="From"
             icon={FaLocationDot}
-            text={`${startStop.city} (${startStop.departure})`}
+            text={`${getCityByCityCode(startStop.city)?.name} (${startStop.departure})`}
           />
         )}
         {endStop && (
           <InfoRow
             label="To"
             icon={FaLocationDot}
-            text={`${endStop.city} (${endStop.arrival})`}
+            text={`${getCityByCityCode(endStop.city)?.name} (${endStop.arrival})`}
           />
         )}
         {startStop && endStop && (
           <InfoRow
             label="Fare"
             icon={FaMoneyBill}
-            text={String(endStop.fare - startStop.fare)}
+            text={`${formatPrice(endStop.fare - startStop.fare)} (GST included)`}
           />
         )}
-        <h4 className="mt-4 text-sm font-semibold md:text-base">
-          Journey Details:
-        </h4>
+        <h4 className="mt-4 text-sm font-semibold md:text-base">Bus Route:</h4>
         <div className="mx-auto mt-4 grid max-w-[20rem] grid-cols-3 place-items-center">
           <h5 className="mb-3 text-xs font-medium text-neutral-400 md:text-sm">
             Arrival
@@ -130,6 +129,8 @@ export default function SelectedBusAside({
     </aside>
   );
 }
+
+export default memo(SelectedBusAside);
 
 interface JourneyStopsProps {
   stop: BusStop;
