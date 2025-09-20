@@ -98,7 +98,7 @@ export default function Book() {
   }
 
   return (
-    <main className="main-margin-top bg-theme-100 pb-16">
+    <main className="main-padding-top bg-[url('/blob-scene-haikei.png')] bg-no-repeat bg-cover bg-center pb-4">
       <div className="custom-container flex flex-col gap-8 py-10">
         <div className="text-textSecondary font-poppins flex flex-col items-center gap-6 text-base font-semibold sm:flex-row md:text-lg">
           <div className="flex items-center gap-2">
@@ -124,7 +124,7 @@ export default function Book() {
 
       {/* details in bottom */}
       {selectedSeats.length > 0 && (
-        <div className="fixed right-0 bottom-0 left-0 flex items-center justify-between gap-4 border-t border-dashed border-neutral-200 bg-white px-3 py-2 sm:px-6 sm:py-4">
+        <div className="fixed z-50 right-0 bottom-0 left-0 flex items-center justify-between gap-4 border-t border-dashed border-neutral-200 bg-white px-3 py-2 sm:px-6 sm:py-4">
           <div>
             {currentStep > 1 && (
               <button

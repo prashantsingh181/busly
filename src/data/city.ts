@@ -6,71 +6,77 @@ export const cities: City[] = [
     name: "Delhi",
     img: "/cities/delhi.webp",
     description:
-      "lorem ipsum dolor saket saminat fabwkq fajjeog gopwoj onkfskjd",
+      "The bustling capital of India, Delhi is known for its rich history, vibrant culture, and iconic landmarks like India Gate and Red Fort.",
   },
   {
     code: "AGC",
     name: "Agra",
     img: "/cities/agra.webp",
     description:
-      "lorem ipsum dolor saket saminat fabwkq fajjeog gopwoj onkfskjd",
+      "Home to the world-famous Taj Mahal, Agra is a historic city that showcases Mughal architecture and timeless heritage.",
   },
   {
     code: "BOM",
     name: "Mumbai",
     img: "/cities/mumbai.webp",
     description:
-      "lorem ipsum dolor saket saminat fabwkq fajjeog gopwoj onkfskjd",
+      "The city that never sleeps, Mumbai is India’s financial hub, famous for Bollywood, Marine Drive, and its fast-paced lifestyle.",
   },
   {
     code: "BLR",
     name: "Bangalore",
     img: "/cities/banglore.webp",
     description:
-      "lorem ipsum dolor saket saminat fabwkq fajjeog gopwoj onkfskjd",
+      "Often called the Silicon Valley of India, Bangalore is known for its IT industry, pleasant weather, and vibrant startup culture.",
   },
   {
     code: "MAA",
     name: "Chennai",
     img: "/cities/chennai.webp",
     description:
-      "lorem ipsum dolor saket saminat fabwkq fajjeog gopwoj onkfskjd",
+      "A coastal city with deep cultural roots, Chennai is famous for its temples, classical music, Marina Beach, and South Indian cuisine.",
   },
-  // { code: "CCU", name: "Kolkata", img: "/cities/kolkata.webp", description: "lorem ipsum dolor saket saminat fabwkq fajjeog gopwoj onkfskjd" },
+  {
+    code: "CCU",
+    name: "Kolkata",
+    img: "/cities/kolkata.webp",
+    description:
+      "Known as the City of Joy, Kolkata is celebrated for its art, literature, colonial architecture, and the iconic Howrah Bridge.",
+  },
   {
     code: "HYD",
     name: "Hyderabad",
     img: "/cities/hyderabad.webp",
     description:
-      "lorem ipsum dolor saket saminat fabwkq fajjeog gopwoj onkfskjd",
+      "Blending history with modernity, Hyderabad is renowned for the Charminar, tech hubs, and its world-famous biryani.",
   },
   {
     code: "PNQ",
     name: "Pune",
     img: "/cities/pune.webp",
     description:
-      "lorem ipsum dolor saket saminat fabwkq fajjeog gopwoj onkfskjd",
+      "A thriving educational and cultural hub, Pune is known for its pleasant climate, vibrant nightlife, and historical landmarks.",
   },
   {
     code: "JAI",
     name: "Jaipur",
     img: "/cities/jaipur.webp",
     description:
-      "lorem ipsum dolor saket saminat fabwkq fajjeog gopwoj onkfskjd",
+      "The Pink City of India, Jaipur is famous for its royal palaces, forts, colorful bazaars, and rich Rajasthani heritage.",
   },
   {
     code: "THA",
     name: "Thane",
     img: "/cities/thane.webp",
     description:
-      "lorem ipsum dolor saket saminat fabwkq fajjeog gopwoj onkfskjd",
+      "Known as the City of Lakes, Thane is a fast-growing urban area with natural beauty and strong connectivity to Mumbai.",
   },
   {
     code: "VLR",
     name: "Vellore",
     img: "/cities/vellore.webp",
     description:
-      "lorem ipsum dolor saket saminat fabwkq fajjeog gopwoj onkfskjd",
+      "Famous for the Vellore Fort and Christian Medical College, Vellore is a historic city blending culture, education, and heritage.",
   },
 ];
 

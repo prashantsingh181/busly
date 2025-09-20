@@ -155,6 +155,7 @@ export default function useBooking() {
       setError("Please fill out all the required fields!");
       return;
     }
+    setError("")
     setCurrentStep((prevCurrentStep) =>
       Math.min(bookingSteps.length, prevCurrentStep + 1),
     );

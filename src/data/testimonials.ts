@@ -4,71 +4,71 @@ export interface Testimonial {
   author: string;
   location: string;
   description: string;
-  tag: string;
+  rating: number;
 }
 
 export const testimonials: Testimonial[] = [
   {
     id: 1,
-    title: "Incredible journey of learning",
-    author: "Karthik Srinivasan",
-    location: "Tamil Nadu",
+    title: "Seamless booking experience",
+    author: "Ananya Sharma",
+    location: "Delhi",
+    rating: 4,
     description:
-      "Joining this community gave me the confidence to lead and the support to grow. Every step felt guided.",
-    tag: "Growth",
+      "Busly made booking my trip so easy! No more long queues at counters—just a few clicks and I was set to travel.",
   },
   {
     id: 2,
-    title: "Rediscovering my cultural roots",
-    author: "Priya Ramesh",
-    location: "Singapore",
+    title: "Affordable and reliable",
+    author: "Rohit Mehta",
+    location: "Bangalore",
+    rating: 5,
     description:
-      "Living abroad, I had lost touch with my Tamil heritage. This community helped me reconnect with my roots and share them with my children.",
-    tag: "Heritage",
+      "I was pleasantly surprised by the ticket prices and how smooth the journey was. Busly really balances affordability with quality.",
   },
   {
     id: 3,
-    title: "Building bridges across generations",
-    author: "Venkat Krishnamurthy",
-    location: "Chennai",
+    title: "Perfect for last-minute plans",
+    author: "Sneha Nair",
+    location: "Kochi",
+    rating: 4,
     description:
-      "The mentorship programs here created meaningful connections between young professionals and experienced leaders. Truly transformative experience.",
-    tag: "Mentorship",
+      "I had to book a bus just an hour before departure, and Busly made it possible. Quick, simple, and stress-free!",
   },
   {
     id: 4,
-    title: "Finding my voice through community service",
-    author: "Deepika Nair",
-    location: "Kerala",
+    title: "Safe journeys every time",
+    author: "Arjun Verma",
+    location: "Hyderabad",
+    rating: 5,
     description:
-      "Volunteering with this organization taught me that small actions can create ripple effects. I discovered my passion for social impact.",
-    tag: "Service",
+      "Busly’s verified operators and transparent booking gave me peace of mind. I always feel safe traveling with them.",
   },
   {
     id: 5,
-    title: "From stranger to family",
-    author: "Arjun Patel",
-    location: "Mumbai",
+    title: "Travel made family-friendly",
+    author: "Pooja Rathi",
+    location: "Pune",
+    rating: 5,
     description:
-      "Moving to a new city was daunting, but this community welcomed me with open arms. I found not just friends, but a second family.",
-    tag: "Community",
+      "Booking for my family was so smooth. The seat selection and payment options made everything stress-free.",
   },
   {
     id: 6,
-    title: "Empowering the next generation",
-    author: "Lakshmi Iyer",
-    location: "Bangalore",
+    title: "Bus travel made modern",
+    author: "Vikram Singh",
+    location: "Lucknow",
+    rating: 4,
     description:
-      "Teaching Tamil language to young children through this platform has been incredibly rewarding. Seeing their enthusiasm gives me hope for our culture's future.",
-    tag: "Education",
+      "Busly has completely changed how I look at bus travel. From digital tickets to live tracking, it feels futuristic.",
   },
   {
     id: 7,
-    title: "Leadership through collaboration",
-    author: "Rajesh Kumar",
-    location: "Coimbatore",
+    title: "Always on time",
+    author: "Meera Joshi",
+    location: "Chandigarh",
+    rating: 5,
     description:
-      "Leading a project here taught me that the best leaders listen more than they speak. The collaborative spirit is infectious and inspiring.",
-    tag: "Leadership",
+      "With Busly, I never worry about missing my bus. The reminders and updates keep me perfectly on track.",
   },
 ];

@@ -4,6 +4,10 @@ import BusCard from "@/components/common/BusCard";
 import SearchForm from "@/components/common/SearchForm";
 import type { BusWithRoute } from "@/types/bus";
 import SelectedBusAside from "@/components/common/SelectedBusAside";
+import TextWithIcon from "@/components/common/TextWithIcon";
+import { TbBusOff } from "react-icons/tb";
+import { LuSearchX } from "react-icons/lu";
+import { FaBusSimple } from "react-icons/fa6";
 
 export default function Search() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -36,18 +40,46 @@ export default function Search() {
   return (
     <main className="bg-white">
       <div className="main-margin-top custom-container py-10">
-        <SearchForm
-          isHorizontal
-          initialFrom={from}
-          initialTo={to}
-          initialDate={date}
-        />
+        <div className="mb-12">
+          <SearchForm
+            isHorizontal
+            initialFrom={from}
+            initialTo={to}
+            initialDate={date}
+          />
+        </div>
         {inValidSearchCondition ? (
-          <div>Select First</div>
+          <div className="flex flex-col gap-6">
+            <TextWithIcon
+              textClassName="text-xl sm:text-3xl font-semibold"
+              text="Please select cities and date"
+              icon={<LuSearchX className="text-xl sm:text-3xl" />}
+            />
+            <div>
+              <img
+                src="bus-stop-cover.gif"
+                alt="Gif of people waiting at bus stop"
+                className="mx-auto h-full w-full max-w-[55rem] rounded-xl shadow-xl"
+              />
+            </div>
+          </div>
         ) : buses.length === 0 ? (
-          <div>No Buses found!</div>
+          <div className="flex flex-col gap-6">
+            <TextWithIcon
+              textClassName="text-xl sm:text-3xl font-semibold"
+              text="No Buses Found!"
+              icon={<TbBusOff className="text-xl sm:text-3xl" />}
+            />
+            <div>
+              <img
+                src="bus-stop-cover.gif"
+                alt="Gif of people waiting at bus stop"
+                className="mx-auto h-full w-full max-w-[55rem] rounded-xl shadow-xl"
+              />
+            </div>
+          </div>
         ) : (
-          <div className="mt-16 grid grid-cols-6 gap-6">
+          <div className="grid grid-cols-6 gap-6">
             <section className="col-span-full flex flex-col gap-6 lg:col-span-4">
               {buses.map((bus) => (
                 <div
@@ -76,7 +108,14 @@ export default function Search() {
                   </div>
                 </>
               ) : (
-                <div className="hidden lg:block">Please Select a bus</div>
+                <div className="hidden lg:block sticky top-[6.5rem]">
+                  <TextWithIcon
+                  containerClassName="flex flex-col gap-6 items-center"
+                    icon={<FaBusSimple className="text-[8rem] text-theme-700" />}
+                    textClassName="text-xl font-medium"
+                    text="Please Select a bus to preview"
+                  />
+                </div>
               )}
             </div>
           </div>

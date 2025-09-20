@@ -1,5 +1,7 @@
+import CityCard from "@/components/common/CityCard";
 import { cities } from "@/data/city";
-import type { City } from "@/types/city";
+import { FiChevronsRight } from "react-icons/fi";
+import { Link } from "react-router";
 
 export default function Cities() {
   return (
@@ -25,9 +27,18 @@ export default function Cities() {
       </svg>
       <section className="bg-theme-200">
         <div className="custom-container flex flex-col gap-6 py-10">
-          <h2 className="font-poppins text-center text-[2.25rem] font-extrabold sm:text-[2.5rem] md:text-[2.75rem] lg:text-[3rem]">
-            Cities We cover
-          </h2>
+          <div className="relative flex w-full items-center justify-center">
+            <h2 className="section-heading">
+              <span className="text-theme-700 italic">Cities</span> We cover
+            </h2>
+            <Link
+              to="/cities"
+              className="text-textSecondary hover-scale absolute right-0 flex items-center gap-1"
+            >
+              <span>View all</span>
+              <FiChevronsRight />
+            </Link>
+          </div>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {cities.slice(0, 4).map((city) => (
               <CityCard key={city.code} city={city} />
@@ -66,31 +77,5 @@ export default function Cities() {
         </defs>
       </svg>
     </>
-  );
-}
-
-interface CityCardProps {
-  city: City;
-}
-
-function CityCard({ city }: Readonly<CityCardProps>) {
-  return (
-    <div className="card group overflow-hidden rounded-3xl bg-white">
-      <div className="h-[15rem] w-full overflow-hidden md:h-[20rem]">
-        <img
-          src={city.img}
-          alt={city.name}
-          className="h-full w-full object-cover transition-transform group-hover:scale-105"
-        />
-      </div>
-      <div className="flex flex-col gap-3 p-4">
-        <h3 className="text-base font-semibold text-neutral-900/75 md:text-lg">
-          {city.name} ({city.code})
-        </h3>
-        <p className="line-clamp-2 text-sm text-neutral-700/75 md:text-base">
-          {city.description}
-        </p>
-      </div>
-    </div>
   );
 }

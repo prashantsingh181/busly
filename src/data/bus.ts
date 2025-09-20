@@ -4,27 +4,93 @@ import { getRouteByRouteId } from "./busRoute";
 export const buses: Bus[] = [
   {
     id: "BUS101",
-    name: "ExpressLine Travels",
-    type: "AC Sleeper",
+    name: "JBM Travels",
+    type: "Seater",
     totalSeats: 30,
     img: "/buses/bus1.webp",
     routeIds: ["ROUTE1", "ROUTE2"],
+    description:
+      "Reliable seater bus offering smooth rides for short and long trips.",
   },
   {
     id: "BUS102",
-    name: "InterCity Travels",
-    type: "Non-AC Seater",
-    totalSeats: 40,
+    name: "Volvo Mint",
+    type: "Sleeper",
+    totalSeats: 20,
     img: "/buses/bus2.webp",
     routeIds: ["ROUTE3", "ROUTE4"],
+    description:
+      "Luxurious sleeper bus designed for overnight comfort and relaxation.",
   },
   {
     id: "BUS103",
     name: "Southern Comfort",
-    type: "AC Sleeper",
+    type: "Seater",
+    totalSeats: 32,
+    img: "/buses/bus3.webp",
+    routeIds: ["ROUTE5", "ROUTE6", "ROUTE1", "ROUTE2"],
+    description:
+      "Spacious seater bus with excellent seating and a smooth journey.",
+  },
+  {
+    id: "BUS104",
+    name: "Child Bus",
+    type: "Seater",
     totalSeats: 32,
     img: "/buses/bus4.webp",
     routeIds: ["ROUTE5", "ROUTE6", "ROUTE1", "ROUTE2"],
+    description:
+      "Family-friendly bus offering safe and comfortable seating for all ages.",
+  },
+  {
+    id: "BUS105",
+    name: "MarcoPolo Touring",
+    type: "Seater",
+    totalSeats: 32,
+    img: "/buses/bus5.webp",
+    routeIds: ["ROUTE5", "ROUTE6", "ROUTE1", "ROUTE2"],
+    description:
+      "Modern touring bus built for comfort and style on long-distance routes.",
+  },
+  {
+    id: "BUS106",
+    name: "Volvo Green",
+    type: "Sleeper",
+    totalSeats: 20,
+    img: "/buses/bus6.webp",
+    routeIds: ["ROUTE5", "ROUTE6", "ROUTE1", "ROUTE2"],
+    description:
+      "Eco-friendly sleeper bus with premium interiors for a restful journey.",
+  },
+  {
+    id: "BUS107",
+    name: "Volvo Maroon",
+    type: "Seater",
+    totalSeats: 32,
+    img: "/buses/bus7.webp",
+    routeIds: ["ROUTE5", "ROUTE6", "ROUTE1", "ROUTE2"],
+    description:
+      "Elegant seater bus combining modern design with reliable service.",
+  },
+  {
+    id: "BUS108",
+    name: "TSRTC Buses",
+    type: "Sleeper",
+    totalSeats: 20,
+    img: "/buses/bus8.webp",
+    routeIds: ["ROUTE5", "ROUTE6", "ROUTE1", "ROUTE2"],
+    description:
+      "Trusted government sleeper service ensuring affordability and comfort.",
+  },
+  {
+    id: "BUS109",
+    name: "Lake Side",
+    type: "Seater",
+    totalSeats: 32,
+    img: "/buses/bus9.webp",
+    routeIds: ["ROUTE5", "ROUTE6", "ROUTE1", "ROUTE2"],
+    description:
+      "Relaxing seater bus known for scenic routes and peaceful rides.",
   },
 ];
 

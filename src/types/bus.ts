@@ -4,6 +4,7 @@ export interface Bus {
   type: string; // TODO: turn this into enum
   totalSeats: number;
   img: string;
+  description: string;
   routeIds: string[];
 }
 
