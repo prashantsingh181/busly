@@ -2,7 +2,7 @@ import { type FormikConfig, type FormikValues, useFormik } from "formik";
 import { useEffect } from "react";
 
 export default function useCustomFormik<
-  Values extends FormikValues = FormikValues
+  Values extends FormikValues = FormikValues,
 >(config: FormikConfig<Values>) {
   const form = useFormik(config);
 

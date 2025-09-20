@@ -119,31 +119,31 @@
     @apply hover:scale-[103%] hover:opacity-90 hover:shadow-md;
   }
   .secondary-button {
-    @apply bg-theme-300 text-textPrimary border-theme-300 rounded-lg border text-sm sm:text-base px-4 py-3 sm:px-8 sm:py-4 text-center text-[1.125rem] leading-none font-semibold disabled:border-0 disabled:bg-neutral-300 disabled:text-neutral-300;
+    @apply bg-theme-300 text-textPrimary border-theme-300 rounded-lg border px-4 py-3 text-center text-sm text-[1.125rem] leading-none font-semibold disabled:border-0 disabled:bg-neutral-300 disabled:text-neutral-300 sm:px-8 sm:py-4 sm:text-base;
   }
   .primary-button:active:not(:disabled),
   .secondary-button:active:not(:disabled) {
     @apply animate-subtleScale;
   }
   .input-text {
-    @apply focus:outline-theme-500 placeholder:text-textPrimary/24 h-[2.5rem] sm:h-[3rem] w-full rounded-lg bg-neutral-100 px-3 sm:px-3.5 py-2 sm:py-2.5 text-base leading-[1.15rem] sm:leading-[1.25rem] text-neutral-700/75 disabled:cursor-not-allowed disabled:bg-neutral-300/70 disabled:text-neutral-500;
+    @apply focus:outline-theme-500 placeholder:text-textPrimary/24 h-[2.5rem] w-full rounded-lg bg-neutral-100 px-3 py-2 text-base leading-[1.15rem] text-neutral-700/75 disabled:cursor-not-allowed disabled:bg-neutral-300/70 disabled:text-neutral-500 sm:h-[3rem] sm:px-3.5 sm:py-2.5 sm:leading-[1.25rem];
     box-shadow: 0px 1px 2px 0px #1018280d;
     border: 1px solid #e5e5e5;
   }
   .input-text-container {
-    @apply outline-theme-500 h-[2.5rem] sm:h-[3rem] w-full rounded-lg bg-neutral-100 px-3 sm:px-3.5 py-2 sm:py-2.5 focus-within:outline-2 disabled:cursor-not-allowed disabled:bg-neutral-600/70 disabled:text-neutral-500;
+    @apply outline-theme-500 h-[2.5rem] w-full rounded-lg bg-neutral-100 px-3 py-2 focus-within:outline-2 disabled:cursor-not-allowed disabled:bg-neutral-600/70 disabled:text-neutral-500 sm:h-[3rem] sm:px-3.5 sm:py-2.5;
     box-shadow: 0px 1px 2px 0px #1018280d;
     border: 1px solid #e5e5e5;
   }
   .input-text-container input {
-    @apply placeholder:text-textPrimary/24 border-0 text-base leading-[1.15rem] sm:leading-[1.25rem] text-neutral-700/75 outline-0;
+    @apply placeholder:text-textPrimary/24 border-0 text-base leading-[1.15rem] text-neutral-700/75 outline-0 sm:leading-[1.25rem];
   }
 
   .input-label {
     @apply text-textSecondary mb-2 inline-block text-sm font-medium;
   }
   .card {
-    @apply border-[#EFEFEF] bg-white shadow-[4px_4px_12px_0px_rgba(0,0,0,0.12)] rounded-lg;
+    @apply rounded-lg border-[#EFEFEF] bg-white shadow-[4px_4px_12px_0px_rgba(0,0,0,0.12)];
   }
 }
 
@@ -164,7 +164,7 @@
     @apply pt-[3.875rem] sm:pt-[4.5rem] md:pt-[5.5rem];
   }
   .left-arrow {
-    @apply absolute after:content-[''] after:absolute after:border-[6px] after:border-transparent after:border-r-neutral-200 after:-left-[12px] after:top-1/2 after:-translate-y-1/2;
+    @apply absolute after:absolute after:top-1/2 after:-left-[12px] after:-translate-y-1/2 after:border-[6px] after:border-transparent after:border-r-neutral-200 after:content-[''];
   }
 }
 

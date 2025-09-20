@@ -1,4 +1,4 @@
-import type { Bus, BusWithRoute } from "../types/bus";
+import type { Bus, BusWithRoute } from "@/types/bus";
 import { getRouteByRouteId } from "./busRoute";
 
 export const buses: Bus[] = [

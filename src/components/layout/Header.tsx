@@ -34,7 +34,7 @@ export default function Header() {
         {/* logo */}
         <Link
           to="/"
-          className="text-xl md:text-2xl font-semibold font-poppins flex gap-2 text-theme-600 items-center"
+          className="font-poppins text-theme-600 flex items-center gap-2 text-xl font-semibold md:text-2xl"
         >
           <FaBus />
           <h1>Busly</h1>
@@ -49,7 +49,7 @@ export default function Header() {
               <NavLink
                 to="/buses"
                 className={({ isActive }) =>
-                  `hover:text-theme-600  ${
+                  `hover:text-theme-600 ${
                     isActive
                       ? "text-theme-600 relative overflow-visible after:absolute after:-bottom-0.5 after:left-0 after:h-[1px] after:w-full after:bg-current after:content-['']"
                       : ""
@@ -63,7 +63,7 @@ export default function Header() {
               <NavLink
                 to="/cities"
                 className={({ isActive }) =>
-                  `hover:text-theme-600  ${
+                  `hover:text-theme-600 ${
                     isActive
                       ? "text-theme-600 relative overflow-visible after:absolute after:-bottom-0.5 after:left-0 after:h-[1px] after:w-full after:bg-current after:content-['']"
                       : ""
@@ -75,7 +75,7 @@ export default function Header() {
             </li>
           </ul>
         </nav>
-        <Link to="/search" className="flex items-center gap-2 primary-button">
+        <Link to="/search" className="primary-button flex items-center gap-2">
           <IoTicketOutline />
           <span>Book Ticket</span>
         </Link>

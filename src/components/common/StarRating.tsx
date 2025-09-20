@@ -19,7 +19,7 @@ type NonInteractiveStarRating = BaseStarRating;
 type StarRatingProps = InteractiveStarRating | NonInteractiveStarRating;
 
 export default function StarRating({
-//   isInteractive,
+  //   isInteractive,
   totalRating = 5,
   value,
   icon = <FaStar className="text-rating-fill text-lg" />,
@@ -33,7 +33,7 @@ export default function StarRating({
           <button key={i}>{icon}</button>
         ) : (
           <button key={i}>{emptyIcon}</button>
-        )
+        ),
       )}
     </div>
   );

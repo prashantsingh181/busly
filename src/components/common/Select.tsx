@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { FaX, FaChevronDown } from "react-icons/fa6";
-import useOnClickOutside from "../../hooks/useOnClickOutside";
+import useOnClickOutside from "@/hooks/useOnClickOutside";
 
 interface OptionBase {
   label: string;
@@ -79,12 +79,12 @@ const Select = ({
     if (isMulti) {
       filteredDropdownOptions = dropdownOptions.filter(
         (option) =>
-          !value?.find((valueOption) => valueOption.value === option.value)
+          !value?.find((valueOption) => valueOption.value === option.value),
       );
     }
     if (shouldFilter) {
       filteredDropdownOptions = filteredDropdownOptions.filter((option) =>
-        option.label.toLowerCase().includes(searchTerm.toLowerCase())
+        option.label.toLowerCase().includes(searchTerm.toLowerCase()),
       );
     }
 
@@ -113,7 +113,7 @@ const Select = ({
   useEffect(() => {
     if (focusedIndex >= 0 && dropdownRef.current) {
       const focusedElement = dropdownRef.current.querySelector(
-        `li:nth-child(${focusedIndex + 1})`
+        `li:nth-child(${focusedIndex + 1})`,
       );
       if (focusedElement) {
         focusedElement.scrollIntoView({ block: "nearest" });
@@ -134,7 +134,7 @@ const Select = ({
       case "ArrowDown":
         e.preventDefault();
         setFocusedIndex((prevIndex) =>
-          prevIndex < displayOptions.length - 1 ? prevIndex + 1 : prevIndex
+          prevIndex < displayOptions.length - 1 ? prevIndex + 1 : prevIndex,
         );
         break;
       case "ArrowUp":
@@ -160,7 +160,7 @@ const Select = ({
   const handleOptionSelect = (option: Option) => {
     const alreadySelected = isMulti
       ? value?.findIndex(
-          (dropdownOption) => dropdownOption.value === option.value
+          (dropdownOption) => dropdownOption.value === option.value,
         ) !== -1
       : option.value === value?.value;
     let newOption: Option | Option[];
@@ -184,7 +184,7 @@ const Select = ({
   const handleRemoveOption = (optionValue: number | string) => {
     if (isMulti) {
       const updatedOptions = value?.filter(
-        (option) => option.value !== optionValue
+        (option) => option.value !== optionValue,
       );
 
       onChange(updatedOptions);
@@ -291,8 +291,8 @@ const Select = ({
                       isSelected
                         ? "bg-theme-500 text-white"
                         : index === focusedIndex
-                        ? "bg-neutral-300"
-                        : "hover:bg-neutral-300"
+                          ? "bg-neutral-300"
+                          : "hover:bg-neutral-300"
                     }`}
                     role="option"
                     aria-selected={isSelected}

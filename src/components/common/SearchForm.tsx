@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router";
-import { cities } from "../../data/city";
+import { cities } from "@/data/city";
 import { useMemo } from "react";
-import useCustomFormik from "../../hooks/useCustomFormik";
-import type { SearchForm } from "../../types/form";
+import useCustomFormik from "@/hooks/useCustomFormik";
+import type { SearchForm } from "@/types/form";
 import * as Yup from "yup";
 import Select from "./Select";
 import { LiaExchangeAltSolid } from "react-icons/lia";
@@ -26,7 +26,7 @@ export default function SearchForm({
   const today = new Date().toISOString();
   const cityOptions = useMemo(
     () => cities.map((city) => ({ label: city.name, value: city.code })),
-    []
+    [],
   );
   const formClassName = `relative p-4 bg-theme-200 shadow-xl rounded-xl border-2 md:border-4 border-theme-500 grid gap-x-4 gap-y-1 md:gap-y-2 
     ${
@@ -65,7 +65,7 @@ export default function SearchForm({
       className={formClassName}
     >
       {/* dropdown to select from city */}
-      <div className="pb-4 md:pb-5 relative">
+      <div className="relative pb-4 md:pb-5">
         <Select
           options={cityOptions}
           name="from"
@@ -79,7 +79,7 @@ export default function SearchForm({
           <p
             aria-live="polite"
             data-name="error-from"
-            className="text-xs md:text-sm text-red-400 absolute bottom-0 left-0"
+            className="absolute bottom-0 left-0 text-xs text-red-400 md:text-sm"
           >
             {form.errors.from}
           </p>
@@ -88,14 +88,14 @@ export default function SearchForm({
 
       <button
         type="button"
-        className="rounded-full bg-white shadow-lg hover-scale p-3 text-xl md:self-end mb-5 md:inline hidden"
+        className="hover-scale mb-5 hidden rounded-full bg-white p-3 text-xl shadow-lg md:inline md:self-end"
         onClick={handleInterChangeCities}
       >
         <LiaExchangeAltSolid />
       </button>
 
       {/* dropdown to select to city */}
-      <div className="pb-4 md:pb-5 relative">
+      <div className="relative pb-4 md:pb-5">
         <Select
           options={cityOptions}
           name="to"
@@ -109,7 +109,7 @@ export default function SearchForm({
           <p
             aria-live="polite"
             data-name="error-to"
-            className="text-xs md:text-sm text-red-400 absolute bottom-0 left-0"
+            className="absolute bottom-0 left-0 text-xs text-red-400 md:text-sm"
           >
             {form.errors.to}
           </p>
@@ -120,7 +120,7 @@ export default function SearchForm({
       <div
         className={`${
           isHorizontal ? "col-span-full lg:col-span-1" : "col-span-full"
-        } pb-4 md:pb-5 relative`}
+        } relative pb-4 md:pb-5`}
       >
         <span className="input-label">Journey Date</span>
         <Flatpickr
@@ -138,7 +138,7 @@ export default function SearchForm({
         {form.touched.date && form.errors.date ? (
           <p
             aria-live="polite"
-            className="text-xs md:text-sm text-red-400 absolute bottom-0 left-0"
+            className="absolute bottom-0 left-0 text-xs text-red-400 md:text-sm"
           >
             {form.errors.date}
           </p>
@@ -147,7 +147,7 @@ export default function SearchForm({
 
       <button
         type="submit"
-        className={`primary-button flex gap-2 rounded-full justify-self-center col-span-full ${
+        className={`primary-button col-span-full flex gap-2 justify-self-center rounded-full ${
           isHorizontal
             ? "lg:absolute lg:bottom-0 lg:left-1/2 lg:-translate-x-1/2 lg:translate-y-1/2"
             : ""

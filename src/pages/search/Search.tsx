@@ -1,9 +1,9 @@
 import { useSearchParams } from "react-router";
-import { filterBuses } from "../../data/bus";
-import BusCard from "../../components/common/BusCard";
-import SearchForm from "../../components/common/SearchForm";
-import type { BusWithRoute } from "../../types/bus";
-import SelectedBusAside from "./components/SelectedBusAside";
+import { filterBuses } from "@/data/bus";
+import BusCard from "@/components/common/BusCard";
+import SearchForm from "@/components/common/SearchForm";
+import type { BusWithRoute } from "@/types/bus";
+import SelectedBusAside from "@/components/common/SelectedBusAside";
 
 export default function Search() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -47,14 +47,14 @@ export default function Search() {
         ) : buses.length === 0 ? (
           <div>No Buses found!</div>
         ) : (
-          <div className="grid grid-cols-6 gap-6 mt-16">
-            <section className="flex flex-col gap-6 lg:col-span-4 col-span-full">
+          <div className="mt-16 grid grid-cols-6 gap-6">
+            <section className="col-span-full flex flex-col gap-6 lg:col-span-4">
               {buses.map((bus) => (
                 <div
                   key={bus.id}
                   className={`rounded-lg ${
                     selectedBusId && selectedBusId === bus.id
-                      ? "outline-2 outline-theme-400 shadow-[4px_4px_12px_0px_var(--theme-300)]"
+                      ? "outline-theme-400 shadow-[4px_4px_12px_0px_var(--theme-300)] outline-2"
                       : ""
                   }`}
                   onClick={() => handleSelect(bus.id)}
@@ -68,10 +68,10 @@ export default function Search() {
               {selectedBus ? (
                 <>
                   <div
-                    className="fixed inset-0 bg-black/40 z-50 lg:z-0 backdrop-blur-[2px] lg:hidden"
+                    className="fixed inset-0 z-50 bg-black/40 backdrop-blur-[2px] lg:z-0 lg:hidden"
                     onClick={() => handleSelect(null)}
                   />
-                  <div className="fixed z-[60] top-0 bottom-0 right-0 w-[18rem] lg:w-full lg:static bg-white p-4 overflow-auto lg:border-[#EFEFEF] lg:shadow-xl lg:rounded-lg">
+                  <div className="fixed top-0 right-0 bottom-0 z-[60] w-[18rem] overflow-auto bg-white p-4 lg:static lg:w-full lg:rounded-lg lg:border-[#EFEFEF] lg:shadow-xl">
                     <SelectedBusAside bus={selectedBus} date={date} />
                   </div>
                 </>

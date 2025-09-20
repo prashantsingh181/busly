@@ -121,7 +121,7 @@ const Content = ({
   const getDropdownStyle = useCallback(() => {
     if (dropdownRef.current) {
       const dropdownElement = dropdownRef.current.querySelector(
-        ".dropdown-content"
+        ".dropdown-content",
       ) as HTMLElement;
       if (open && placementState === "bottom-left" && dropdownRef.current) {
         dropdownElement.style.position = "absolute";

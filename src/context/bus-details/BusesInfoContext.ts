@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
-import type { BusWithBookedSeats } from "../../types/bus";
-import type { Ticket } from "../../types/tickets";
+import type { BusWithBookedSeats } from "@/types/bus";
+import type { Ticket } from "@/types/tickets";
 
 interface BusInfoContextType {
   busesInfo: BusWithBookedSeats[];

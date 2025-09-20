@@ -31,5 +31,5 @@ export interface BusWithRoute extends Bus {
 }
 
 export interface BusWithBookedSeats extends Bus {
-  bookedSeats: BookedSeat[]
+  bookedSeats: BookedSeat[];
 }

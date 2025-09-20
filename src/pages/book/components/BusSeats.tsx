@@ -1,5 +1,5 @@
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
-import type { BusWithBookedSeats } from "../../../types/bus";
+import type { BusWithBookedSeats } from "@/types/bus";
 import { PiSteeringWheel } from "react-icons/pi";
 import React from "react";
 
@@ -28,13 +28,13 @@ export default function BusSeats({
     return selectedSeatNos.includes(seatNo);
   }
   return (
-    <div className="w-[18rem] mx-auto">
+    <div className="mx-auto w-[18rem]">
       {/* <div className="flex">
         <div className="flex-1 h-36 relative after:content-[''] after:absolute after:h-44 after:aspect-square after:bg-amber-200/70 after:bottom-20 after:skew-[28deg] after:rotate-45 after:left-1/2 after:-translate-x-[6.25rem] overflow-hidden" />
         <div className="flex-1 h-36 relative after:content-[''] after:absolute after:h-44 after:aspect-square after:bg-amber-200/70 after:bottom-20 after:skew-[28deg] after:rotate-45 after:left-1/2 after:-translate-x-[6.25rem] overflow-hidden" />
       </div> */}
-      <div className="grid grid-cols-4 rounded-lg border-2 border-theme-500 p-4 bg-white gap-4 font-semibold">
-        <div className="col-span-full rounded border-2 border-neutral-500 bg-neutral-100 text-neutral-700 font-bold flex gap-2 items-center p-2 text-lg justify-center">
+      <div className="border-theme-500 grid grid-cols-4 gap-4 rounded-lg border-2 bg-white p-4 font-semibold">
+        <div className="col-span-full flex items-center justify-center gap-2 rounded border-2 border-neutral-500 bg-neutral-100 p-2 text-lg font-bold text-neutral-700">
           <PiSteeringWheel />
           <span>Driver</span>
         </div>
@@ -46,16 +46,16 @@ export default function BusSeats({
                 isBooked(seat)
                   ? soldSeatClassName
                   : isSelected(seat)
-                  ? selectedSeatClassName
-                  : seatClassName
+                    ? selectedSeatClassName
+                    : seatClassName
               }
             >
               {seat}
               {isSelected(seat) && (
-                <IoMdCheckmarkCircleOutline className="absolute left-0.5 top-0.5 text-sm" />
+                <IoMdCheckmarkCircleOutline className="absolute top-0.5 left-0.5 text-sm" />
               )}
               {isBooked(seat) && (
-                <span className="text-[0.5rem] absolute bottom-0.5 left-1/2 -translate-x-1/2">
+                <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 text-[0.5rem]">
                   SOLD
                 </span>
               )}
