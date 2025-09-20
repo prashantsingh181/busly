@@ -7,8 +7,8 @@ export default function Testimonials() {
     <section className="bg-white">
       <div className="custom-container flex flex-col gap-12 py-10">
         <div className="flex flex-col items-center gap-4">
-          <h2 className="text-textPrimary max-w-[35rem] text-center text-[2.5rem] font-semibold">
-            <span className="text-[#03732D] italic">Our service</span> is at the
+          <h2 className="section-heading">
+            <span className="text-theme-700 italic">Our service</span> is at the
             heart of everything we do.
           </h2>
           <div className="text-center text-[#727272]">
@@ -31,12 +31,14 @@ interface TestimonialCardProps {
 
 function TestimonialCard({ review }: Readonly<TestimonialCardProps>) {
   return (
-    <div className="bg-theme-200 flex flex-[0_0_22.5rem] flex-col overflow-visible rounded-3xl p-6 shadow-[4px_4px_14px_0px_rgba(0,0,0,0.05)]">
-      <StarRating value={4} />
-      <h3 className="text-dark mt-5 text-2xl font-bold">{`"${review.title}"`}</h3>
-      <p className="text-dark/80 mt-2.5 flex-1 text-lg">{review.description}</p>
+    <div className="bg-theme-200 flex flex-[0_0_17rem] flex-col overflow-visible rounded-3xl p-4 shadow-[4px_4px_14px_0px_rgba(0,0,0,0.05)] sm:flex-[0_0_20rem] md:flex-[0_0_22.5rem] md:p-6">
+      <StarRating value={review.rating} />
+      <h3 className="text-dark mt-5 text-lg font-bold sm:text-xl md:text-2xl">{`"${review.title}"`}</h3>
+      <p className="text-dark/80 mt-2.5 flex-1 text-sm sm:text-base md:text-lg">
+        {review.description}
+      </p>
       <hr className="mt-6 mb-4 text-[#ebebeb]" />
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex items-center justify-between gap-4 text-xs sm:text-sm md:text-base">
         <span className="text-textSecondary/60">{review.author}</span>
         <div className="text-textSecondary/60 flex items-center gap-1">
           <IoLocationOutline />

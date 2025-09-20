@@ -56,7 +56,7 @@ function SelectedBusAside({
         Bus Selection:
       </h3>
       <img
-        className="h-[8rem] w-full rounded-xl object-cover md:h-[10rem]"
+        className="h-[12rem] w-full rounded-xl object-cover md:h-[16rem]"
         src={bus.img}
         alt={bus.name}
       />

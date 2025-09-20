@@ -22,6 +22,7 @@ export default function SearchForm({
   initialTo,
   initialDate,
 }: Readonly<SearchFormProps>) {
+  console.log(initialDate);
   const navigate = useNavigate();
   const today = new Date().toISOString();
   const cityOptions = useMemo(
@@ -52,6 +53,8 @@ export default function SearchForm({
     },
   });
 
+  console.log(form.values.date);
+
   function handleInterChangeCities() {
     form.setValues((form) => ({ ...form, from: form.to, to: form.from }));
   }
@@ -75,7 +78,7 @@ export default function SearchForm({
           label="From City"
           onChange={(city) => form.setFieldValue("from", city.value)}
         />
-        {form.errors.from ? (
+        {form.submitCount > 0 && form.errors.from ? (
           <p
             aria-live="polite"
             data-name="error-from"
@@ -105,7 +108,7 @@ export default function SearchForm({
           label="To City"
           onChange={(city) => form.setFieldValue("to", city.value)}
         />
-        {form.errors.to ? (
+        {form.submitCount > 0 && form.errors.to ? (
           <p
             aria-live="polite"
             data-name="error-to"
@@ -135,7 +138,7 @@ export default function SearchForm({
           onChange={(date) => form.setFieldValue("date", date[0].toISOString())}
           value={form.values.date ?? undefined}
         />
-        {form.touched.date && form.errors.date ? (
+        {form.submitCount > 0 && form.errors.date ? (
           <p
             aria-live="polite"
             className="absolute bottom-0 left-0 text-xs text-red-400 md:text-sm"
