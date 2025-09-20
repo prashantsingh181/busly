@@ -1,7 +1,5 @@
 import type { Route } from "../types/bus";
 
-
-
 export const routes: Route[] = [
   {
     id: "ROUTE1",
@@ -76,3 +74,7 @@ export const routes: Route[] = [
   //   ],
   // },
 ];
+
+export function getRouteByRouteId(routeId: string) {
+  return routes.find((route) => route.id === routeId);
+}

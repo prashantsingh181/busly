@@ -37,6 +37,10 @@
   --theme-900: #123011;
   --theme-950: #0d240d;
 
+  /* rating color */
+  --rating-fill: #ffc107;
+  --rating-empty: var(--neutral-300);
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -78,6 +82,9 @@
   --color-theme-800: var(--theme-800);
   --color-theme-900: var(--theme-900);
   --color-theme-950: var(--theme-950);
+
+  --color-rating-fill: var(--rating-fill);
+  --color-rating-empty: var(--rating-empty);
 
   --animate-subtleScale: subtle-scale 300ms ease-in-out;
   /* --animate-sendPulse: send-pulse 700ms ease-in-out infinite;
@@ -159,4 +166,16 @@
   .left-arrow {
     @apply absolute after:content-[''] after:absolute after:border-[6px] after:border-transparent after:border-r-neutral-200 after:-left-[12px] after:top-1/2 after:-translate-y-1/2;
   }
+}
+
+/* wave */
+.wave {
+  width: 100vw;
+}
+.wave1,
+.wave3 {
+  transform: translateY(2px);
+}
+.wave2 {
+  transform: translateY(-2px);
 }

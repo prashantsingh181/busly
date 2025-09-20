@@ -200,7 +200,7 @@ const Select = ({
       )}
 
       <div
-        className={`input-text-container flex flex-1 items-center gap-2 rounded-lg ${
+        className={`input-text-container flex items-center gap-2 rounded-lg ${
           isDisabled ? "bg-neutral-600/70" : ""
         }`}
         onClick={toggleDropdown}
@@ -240,7 +240,7 @@ const Select = ({
           </div>
         )}
 
-        <div className="relative h-[2.75rem] grow text-neutral-700/75">
+        <div className="relative h-[2.75rem] flex-1 text-neutral-700/75">
           {!isMulti && value && !searchTerm && (
             <div className="py-3">{value.label}</div>
           )}

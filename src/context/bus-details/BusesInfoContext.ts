@@ -1,11 +1,10 @@
 import { createContext, useContext } from "react";
-import type { BookedSeat, Bus } from "../../types/bus";
+import type { BusWithBookedSeats } from "../../types/bus";
 import type { Ticket } from "../../types/tickets";
 
 interface BusInfoContextType {
-  busesInfo: (Bus & {
-    bookedSeats: BookedSeat[];
-  })[];
+  busesInfo: BusWithBookedSeats[];
+  getBusByBusId: (busId: string) => BusWithBookedSeats | undefined;
   bookTicket: (ticket: Ticket) => void;
 }
 

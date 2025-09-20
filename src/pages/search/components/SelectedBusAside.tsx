@@ -1,17 +1,23 @@
 import type { BusStop, BusWithRoute } from "../../../types/bus";
-import { getCityInfoFromCode } from "../../../data/city";
+import { getCityByCityCode } from "../../../data/city";
 import InfoRow from "../../../components/common/InfoRow";
 import { FaLocationDot, FaMoneyBill } from "react-icons/fa6";
 import { IoTicketSharp } from "react-icons/io5";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 interface SelectedBusAsideProps {
   bus: BusWithRoute;
+  date: string;
+  showButton?: boolean;
 }
 
 export default function SelectedBusAside({
   bus,
+  date,
+  showButton = true,
 }: Readonly<SelectedBusAsideProps>) {
+  const navigate = useNavigate();
   const routeInfo = bus.routeInfo;
   const { startStop, endStop, startIndex, endIndex } =
     routeInfo.route.stops.reduce(
@@ -31,6 +37,17 @@ export default function SelectedBusAside({
         endIndex: null as number | null,
       }
     );
+
+  function handleBooking() {
+    const searchParams = new URLSearchParams({
+      busId: bus.id,
+      routeId: routeInfo.route.id,
+      from: routeInfo.from,
+      to: routeInfo.to,
+      date: date,
+    });
+    navigate(`/book?${searchParams.toString()}`);
+  }
 
   return (
     <aside>
@@ -67,10 +84,19 @@ export default function SelectedBusAside({
             text={String(endStop.fare - startStop.fare)}
           />
         )}
-        <div className="mt-4 grid grid-cols-3 place-items-center">
-          <h4 className="col-span-full font-semibold justify-self-start mb-4 text-sm md:text-base">
-            Journey Details:
-          </h4>
+        <h4 className=" font-semibold  mt-4 text-sm md:text-base">
+          Journey Details:
+        </h4>
+        <div className="mt-4 grid grid-cols-3 place-items-center max-w-[20rem] mx-auto">
+          <h5 className="text-xs md:text-sm font-medium text-neutral-400 mb-3">
+            Arrival
+          </h5>
+          <h5 className="text-xs md:text-sm font-medium text-neutral-400 mb-3">
+            Bus Stop
+          </h5>
+          <h5 className="text-xs md:text-sm font-medium text-neutral-400 mb-3 whitespace-nowrap">
+            Departure
+          </h5>
           {routeInfo.route.stops.map((stop, index) => (
             <JourneyStops
               key={stop.city}
@@ -92,10 +118,15 @@ export default function SelectedBusAside({
           ))}
         </div>
       </div>
-      <button className="primary-button flex items-center gap-2 w-full mt-8 justify-center">
-        <IoTicketSharp />
-        <span>Book Tickets</span>
-      </button>
+      {showButton && (
+        <button
+          className="primary-button flex items-center gap-2 w-full mt-8 justify-center"
+          onClick={handleBooking}
+        >
+          <IoTicketSharp />
+          <span>Book Tickets</span>
+        </button>
+      )}
     </aside>
   );
 }
@@ -112,7 +143,7 @@ function JourneyStops({
   stopActive = false,
   lineActive = false,
 }: Readonly<JourneyStopsProps>) {
-  const city = getCityInfoFromCode(stop.city);
+  const city = getCityByCityCode(stop.city);
   const [isHovered, setIsHovered] = useState(false);
   function handleMouseEnter() {
     setIsHovered(true);

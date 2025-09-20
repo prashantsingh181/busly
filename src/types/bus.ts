@@ -1,5 +1,3 @@
-import type { CityCode } from "../data/city";
-
 export interface Bus {
   id: string;
   name: string;
@@ -11,8 +9,8 @@ export interface Bus {
 
 export interface BookedSeat {
   seatNo: number;
-  from: CityCode;
-  to: CityCode;
+  from: string;
+  to: string;
 }
 
 export interface Route {
@@ -22,12 +20,16 @@ export interface Route {
 }
 
 export interface BusStop {
-  city: CityCode;
+  city: string;
   arrival: string | null;
   departure: string | null;
   fare: number;
 }
 
 export interface BusWithRoute extends Bus {
-  routeInfo: { from: CityCode; to: CityCode; route: Route };
+  routeInfo: { from: string; to: string; route: Route };
+}
+
+export interface BusWithBookedSeats extends Bus {
+  bookedSeats: BookedSeat[]
 }

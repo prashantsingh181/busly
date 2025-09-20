@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { getCities } from "../../data/city";
+import { cities } from "../../data/city";
 import { useMemo } from "react";
 import useCustomFormik from "../../hooks/useCustomFormik";
 import type { SearchForm } from "../../types/form";
@@ -22,17 +22,16 @@ export default function SearchForm({
   initialTo,
   initialDate,
 }: Readonly<SearchFormProps>) {
-  const cities = getCities();
   const navigate = useNavigate();
   const today = new Date().toISOString();
   const cityOptions = useMemo(
     () => cities.map((city) => ({ label: city.name, value: city.code })),
-    [cities]
+    []
   );
   const formClassName = `relative p-4 bg-theme-200 shadow-xl rounded-xl border-2 md:border-4 border-theme-500 grid gap-x-4 gap-y-1 md:gap-y-2 
     ${
       isHorizontal
-        ? "grid-cols-1 lg:grid-cols-3"
+        ? "grid-cols-1 md:grid-cols-[1fr_auto_1fr] lg:grid-cols-[1fr_auto_1fr_1fr] lg:pb-7"
         : "md:grid-cols-[1fr_auto_1fr] grid-cols-1"
     }`;
 
@@ -87,15 +86,13 @@ export default function SearchForm({
         ) : null}
       </div>
 
-      {!isHorizontal && (
-        <button
-          type="button"
-          className="rounded-full bg-white shadow-lg hover-scale p-3 text-xl md:self-end mb-5 md:inline hidden"
-          onClick={handleInterChangeCities}
-        >
-          <LiaExchangeAltSolid />
-        </button>
-      )}
+      <button
+        type="button"
+        className="rounded-full bg-white shadow-lg hover-scale p-3 text-xl md:self-end mb-5 md:inline hidden"
+        onClick={handleInterChangeCities}
+      >
+        <LiaExchangeAltSolid />
+      </button>
 
       {/* dropdown to select to city */}
       <div className="pb-4 md:pb-5 relative">
@@ -122,7 +119,7 @@ export default function SearchForm({
       {/* calendar to pick journey date */}
       <div
         className={`${
-          isHorizontal ? "col-span-1" : "col-span-full"
+          isHorizontal ? "col-span-full lg:col-span-1" : "col-span-full"
         } pb-4 md:pb-5 relative`}
       >
         <span className="input-label">Journey Date</span>
@@ -150,10 +147,10 @@ export default function SearchForm({
 
       <button
         type="submit"
-        className={`primary-button flex gap-2 rounded-full justify-self-center ${
+        className={`primary-button flex gap-2 rounded-full justify-self-center col-span-full ${
           isHorizontal
             ? "lg:absolute lg:bottom-0 lg:left-1/2 lg:-translate-x-1/2 lg:translate-y-1/2"
-            : "col-span-full"
+            : ""
         }`}
       >
         <BsSearch />
