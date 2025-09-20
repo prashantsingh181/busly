@@ -1,5 +1,5 @@
 import type { Bus, BusWithRoute } from "../types/bus";
-import { routes } from "./busRoute";
+import { getRouteByRouteId } from "./busRoute";
 
 export const buses: Bus[] = [
   {
@@ -28,6 +28,10 @@ export const buses: Bus[] = [
   },
 ];
 
+export function getBusByBusId(busId: string) {
+  return buses.find((bus) => bus.id === busId);
+}
+
 export function filterBuses(fromCity: string, toCity: string) {
   const filteredBuses: BusWithRoute[] = [];
   const routesChecked = new Set();
@@ -42,7 +46,7 @@ export function filterBuses(fromCity: string, toCity: string) {
       if (routesChecked.has(routeId)) {
         continue;
       }
-      const route = routes.find((route) => route.id === routeId);
+      const route = getRouteByRouteId(routeId);
       if (route) {
         let startStopFound;
 

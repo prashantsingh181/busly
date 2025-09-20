@@ -33,9 +33,13 @@ export default function BusesInfoProvider({
     }
   });
 
+  function getBusByBusId(busId: string) {
+    return busesInfo.find(bus => bus.id === busId);
+  }
+
   function bookTicket(ticket: Ticket) {
     setTickets((prevTicket) => [...prevTicket, ticket]);
   }
 
-  return <BusesInfoContext value={{ busesInfo, bookTicket }}>{children}</BusesInfoContext>;
+  return <BusesInfoContext value={{ busesInfo, bookTicket, getBusByBusId }}>{children}</BusesInfoContext>;
 }

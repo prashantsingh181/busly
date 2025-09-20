@@ -1,10 +1,10 @@
-import type { CityCode } from "../data/city";
+import type { string } from "../data/city";
 
 export interface Ticket {
   ticketId: string;
   busId: string;
-  from: CityCode;
-  to: CityCode;
+  from: string;
+  to: string;
   date: string;
   bookedSeats: BookedSeat[];
 }

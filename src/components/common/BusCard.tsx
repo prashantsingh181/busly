@@ -14,14 +14,14 @@ export default function BusCard({ bus }: Readonly<BusCardProps>) {
     (stop) => stop.city === bus.routeInfo.to
   )!;
   return (
-    <div className="card flex flex-col sm:flex-row overflow-hidden cursor-pointer">
+    <div className="card flex flex-col sm:flex-row overflow-hidden cursor-pointer group">
       <div className="sm:w-[14rem] overflow-hidden rounded-tl-lg rounded-tr-lg sm:rounded-tr-none sm sm:rounded-bl-lg">
         <img
           src={bus.img}
           alt={bus.name}
           width={170}
           height={170}
-          className="h-full w-full object-cover object-left"
+          className="h-full w-full object-cover object-left group-hover:scale-105 transition-transform"
         />
       </div>
       <div className="h-full flex-1 p-4">
