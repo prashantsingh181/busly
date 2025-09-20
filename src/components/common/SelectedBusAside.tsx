@@ -1,6 +1,6 @@
-import type { BusStop, BusWithRoute } from "../../../types/bus";
-import { getCityByCityCode } from "../../../data/city";
-import InfoRow from "../../../components/common/InfoRow";
+import type { BusStop, BusWithRoute } from "@/types/bus";
+import { getCityByCityCode } from "@/data/city";
+import InfoRow from "@/components/common/InfoRow";
 import { FaLocationDot, FaMoneyBill } from "react-icons/fa6";
 import { IoTicketSharp } from "react-icons/io5";
 import { useState } from "react";
@@ -35,7 +35,7 @@ export default function SelectedBusAside({
         endStop: null as BusStop | null,
         startIndex: null as number | null,
         endIndex: null as number | null,
-      }
+      },
     );
 
   function handleBooking() {
@@ -51,16 +51,16 @@ export default function SelectedBusAside({
 
   return (
     <aside>
-      <h3 className="text-textPrimary text-lg md:text-xl font-semibold mb-4">
+      <h3 className="text-textPrimary mb-4 text-lg font-semibold md:text-xl">
         Bus Selection:
       </h3>
       <img
-        className="h-[8rem] md:h-[10rem] w-full object-cover rounded-xl"
+        className="h-[8rem] w-full rounded-xl object-cover md:h-[10rem]"
         src={bus.img}
         alt={bus.name}
       />
-      <div className="flex flex-col gap-3 mt-6">
-        <h3 className="text-lg md:text-xl font-semibold text-textPrimary">
+      <div className="mt-6 flex flex-col gap-3">
+        <h3 className="text-textPrimary text-lg font-semibold md:text-xl">
           {bus.name}
         </h3>
         {startStop && (
@@ -84,17 +84,17 @@ export default function SelectedBusAside({
             text={String(endStop.fare - startStop.fare)}
           />
         )}
-        <h4 className=" font-semibold  mt-4 text-sm md:text-base">
+        <h4 className="mt-4 text-sm font-semibold md:text-base">
           Journey Details:
         </h4>
-        <div className="mt-4 grid grid-cols-3 place-items-center max-w-[20rem] mx-auto">
-          <h5 className="text-xs md:text-sm font-medium text-neutral-400 mb-3">
+        <div className="mx-auto mt-4 grid max-w-[20rem] grid-cols-3 place-items-center">
+          <h5 className="mb-3 text-xs font-medium text-neutral-400 md:text-sm">
             Arrival
           </h5>
-          <h5 className="text-xs md:text-sm font-medium text-neutral-400 mb-3">
+          <h5 className="mb-3 text-xs font-medium text-neutral-400 md:text-sm">
             Bus Stop
           </h5>
-          <h5 className="text-xs md:text-sm font-medium text-neutral-400 mb-3 whitespace-nowrap">
+          <h5 className="mb-3 text-xs font-medium whitespace-nowrap text-neutral-400 md:text-sm">
             Departure
           </h5>
           {routeInfo.route.stops.map((stop, index) => (
@@ -120,7 +120,7 @@ export default function SelectedBusAside({
       </div>
       {showButton && (
         <button
-          className="primary-button flex items-center gap-2 w-full mt-8 justify-center"
+          className="primary-button mt-8 flex w-full items-center justify-center gap-2"
           onClick={handleBooking}
         >
           <IoTicketSharp />
@@ -156,20 +156,20 @@ function JourneyStops({
     <>
       {hasLine && (
         <div
-          className={`h-16 col-span-full w-[2px] ${
+          className={`col-span-full h-16 w-[2px] ${
             lineActive ? "bg-theme-500" : "bg-neutral-500"
           } mx-auto`}
         />
       )}
-      <div className="font-poppins text-xs md:text-sm font-medium text-neutral-700/75">
+      <div className="font-poppins text-xs font-medium text-neutral-700/75 md:text-sm">
         {stop.arrival ?? "Starts here"}
       </div>
       <div
-        className={`relative font-poppins rounded-xl border ${
+        className={`font-poppins relative rounded-xl border ${
           stopActive
             ? "border-theme-500 bg-theme-100 text-theme-700"
             : "border-neutral-500 bg-neutral-200/75 text-neutral-700"
-        } font-semibold p-2 text-xs md:text-sm cursor-pointer`}
+        } cursor-pointer p-2 text-xs font-semibold md:text-sm`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseOut}
         onFocus={handleMouseEnter}
@@ -178,12 +178,12 @@ function JourneyStops({
       >
         {stop.city}
         {isHovered && city && (
-          <div className="left-arrow z-10 bg-neutral-200 shadow px-3 py-1 rounded right-0 translate-x-[120%] top-1/2 -translate-y-1/2">
+          <div className="left-arrow top-1/2 right-0 z-10 translate-x-[120%] -translate-y-1/2 rounded bg-neutral-200 px-3 py-1 shadow">
             {city.name}
           </div>
         )}
       </div>
-      <div className="font-poppins text-xs md:text-sm font-medium text-neutral-700/75">
+      <div className="font-poppins text-xs font-medium text-neutral-700/75 md:text-sm">
         {stop.departure ?? "Ends Here"}
       </div>
     </>

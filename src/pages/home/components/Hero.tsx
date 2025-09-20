@@ -1,20 +1,20 @@
-import SearchForm from "../../../components/common/SearchForm";
+import SearchForm from "@/components/common/SearchForm";
 
 export default function Hero() {
   return (
-    <section className="bg-white bg-[url('/home/heroBg.webp')] bg-contain bg-right-top bg-no-repeat main-padding-top min-h-screen">
-      <div className="custom-container grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-6 place-items-center p-4">
+    <section className="main-padding-top min-h-screen bg-white bg-[url('/home/heroBg.webp')] bg-contain bg-right-top bg-no-repeat">
+      <div className="custom-container grid grid-cols-1 place-items-center gap-6 p-4 lg:grid-cols-[1fr_1fr]">
         <div className="flex flex-col gap-8">
-          <h2 className="text-3xl sm:text-4xl lg:text-6xl text-neutral-600 text-center font-bold">
+          <h2 className="text-center text-3xl font-bold text-neutral-600 sm:text-4xl lg:text-6xl">
             Travel, enjoy and live a new and full life
           </h2>
           <SearchForm />
         </div>
-        <picture className="block w-full h-auto">
+        <picture className="block h-auto w-full">
           <img
             src="/home/heroImage.png"
             alt="Traveler girl sitting on suit case with mobile in hand"
-            className="w-full h-full object-cover"
+            className="h-full w-full object-cover"
             height={764}
             width={765}
           />

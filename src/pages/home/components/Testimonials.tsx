@@ -1,11 +1,11 @@
-import { testimonials, type Testimonial } from "../../../data/testimonials";
+import { testimonials, type Testimonial } from "@/data/testimonials";
 import { IoLocationOutline } from "react-icons/io5";
-import StarRating from "../../../components/common/StarRating";
+import StarRating from "@/components/common/StarRating";
 
 export default function Testimonials() {
   return (
     <section className="bg-white">
-      <div className="custom-container py-10 flex flex-col gap-12">
+      <div className="custom-container flex flex-col gap-12 py-10">
         <div className="flex flex-col items-center gap-4">
           <h2 className="text-textPrimary max-w-[35rem] text-center text-[2.5rem] font-semibold">
             <span className="text-[#03732D] italic">Our service</span> is at the
@@ -31,7 +31,7 @@ interface TestimonialCardProps {
 
 function TestimonialCard({ review }: Readonly<TestimonialCardProps>) {
   return (
-    <div className="flex flex-[0_0_22.5rem] flex-col overflow-visible rounded-3xl bg-theme-200 p-6 shadow-[4px_4px_14px_0px_rgba(0,0,0,0.05)]">
+    <div className="bg-theme-200 flex flex-[0_0_22.5rem] flex-col overflow-visible rounded-3xl p-6 shadow-[4px_4px_14px_0px_rgba(0,0,0,0.05)]">
       <StarRating value={4} />
       <h3 className="text-dark mt-5 text-2xl font-bold">{`"${review.title}"`}</h3>
       <p className="text-dark/80 mt-2.5 flex-1 text-lg">{review.description}</p>

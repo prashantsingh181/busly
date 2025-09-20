@@ -1,7 +1,7 @@
-import { TICKET_STORAGE_KEY } from "../../config/configKeys";
-import { buses } from "../../data/bus";
-import useLocalStorage from "../../hooks/useLocalStorage";
-import type { Ticket } from "../../types/tickets";
+import { TICKET_STORAGE_KEY } from "@/config/configKeys";
+import { buses } from "@/data/bus";
+import useLocalStorage from "@/hooks/useLocalStorage";
+import type { Ticket } from "@/types/tickets";
 import { BusesInfoContext } from "./BusesInfoContext";
 
 interface BusInfoProviderProps {
@@ -13,7 +13,7 @@ export default function BusesInfoProvider({
 }: Readonly<BusInfoProviderProps>) {
   const [tickets, setTickets] = useLocalStorage<Ticket[]>(
     TICKET_STORAGE_KEY,
-    []
+    [],
   );
 
   // combining booked seats info with busesInfo
@@ -34,12 +34,16 @@ export default function BusesInfoProvider({
   });
 
   function getBusByBusId(busId: string) {
-    return busesInfo.find(bus => bus.id === busId);
+    return busesInfo.find((bus) => bus.id === busId);
   }
 
   function bookTicket(ticket: Ticket) {
     setTickets((prevTicket) => [...prevTicket, ticket]);
   }
 
-  return <BusesInfoContext value={{ busesInfo, bookTicket, getBusByBusId }}>{children}</BusesInfoContext>;
+  return (
+    <BusesInfoContext value={{ busesInfo, bookTicket, getBusByBusId }}>
+      {children}
+    </BusesInfoContext>
+  );
 }

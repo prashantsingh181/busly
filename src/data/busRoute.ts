@@ -1,4 +1,4 @@
-import type { Route } from "../types/bus";
+import type { Route } from "@/types/bus";
 
 export const routes: Route[] = [
   {
