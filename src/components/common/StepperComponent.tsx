@@ -57,7 +57,7 @@ function StepperComponent({
               />
             )}
             <div
-              className={`absolute top-10 left-1/2 -translate-x-1/2 transform text-center text-sm font-medium whitespace-nowrap sm:text-base ${
+              className={`absolute top-10 left-1/2 -translate-x-1/2 transform text-center text-sm font-medium sm:text-base ${
                 isCurrentStep(step.position) ? "text-theme-500" : ""
               }`}
             >
