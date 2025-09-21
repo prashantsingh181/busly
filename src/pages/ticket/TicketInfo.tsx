@@ -1,5 +1,5 @@
 import { useTicketsInfo } from "@/context/bus-details/TicketInfoContext";
-import { useParams } from "react-router";
+import { useParams, useSearchParams } from "react-router";
 import NotFound from "../fallback/NotFound";
 import { useLoginInfo } from "@/context/login-details/LoginInfoContext";
 import Section from "@/components/common/Section";
@@ -12,11 +12,14 @@ import { format } from "date-fns";
 import RouteMap from "@/components/common/RouteMap";
 import type { BusStop } from "@/types/bus";
 import { getBusByBusId } from "@/data/bus";
+import Toast from "@/components/layout/Toast";
 
 function TicketInfo() {
   const { ticketId } = useParams();
   const { userInfo } = useLoginInfo();
   const { getTicketByTicketId } = useTicketsInfo();
+  const [searchParams] = useSearchParams();
+  const showMessage = searchParams.get("showMessage");
   let ticket;
   let sameUser = false;
   if (ticketId) {
@@ -63,6 +66,7 @@ function TicketInfo() {
   );
   return (
     <main className="from-theme-400 to-theme-100 main-padding-top grid min-h-screen place-items-center bg-gradient-to-br">
+      {showMessage && <Toast message="Ticket Booked!" />}
       <div className="custom-container py-10">
         <div className="card mx-auto flex max-w-[40rem] flex-col gap-4 p-6">
           <Section heading="Ticket Details:">

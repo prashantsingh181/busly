@@ -1,16 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 import Layout from "@/components/layout/Layout";
-import Home from "@/pages/home/Home";
-import Search from "@/pages/search/Search";
-import Book from "@/pages/book/Book";
-import Cities from "./pages/cities/Cities";
-import Buses from "./pages/buses/Buses";
 import NotFound from "./pages/fallback/NotFound";
 import Error from "./pages/fallback/Error";
-import Login from "./pages/auth/Login";
-import TicketInfo from "./pages/ticket/TicketInfo";
+import ScreenLoader from "./components/common/ScreenLoader";
 import PrivateRoute from "./components/auth/PrivateRoute";
-import TicketList from "./pages/ticket/TicketList";
 
 const router = createBrowserRouter([
   {
@@ -20,31 +13,80 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
+        lazy: {
+          Component: async () => (await import("./pages/home/Home")).default,
+        },
+        HydrateFallback: ScreenLoader,
       },
-      { path: "buses", element: <Buses /> },
-      { path: "cities", element: <Cities /> },
-      { path: "search", element: <Search /> },
-      { path: "book", element: <Book /> },
+      {
+        path: "buses",
+        lazy: {
+          Component: async () => (await import("./pages/buses/Buses")).default,
+        },
+        HydrateFallback: ScreenLoader,
+      },
+      {
+        path: "cities",
+        lazy: {
+          Component: async () =>
+            (await import("./pages/cities/Cities")).default,
+        },
+        HydrateFallback: ScreenLoader,
+      },
+      {
+        path: "search",
+        lazy: {
+          Component: async () =>
+            (await import("./pages/search/Search")).default,
+        },
+        HydrateFallback: ScreenLoader,
+      },
+      {
+        path: "book",
+        lazy: {
+          Component: async () => (await import("./pages/book/Book")).default,
+        },
+        HydrateFallback: ScreenLoader,
+      },
       {
         path: "/ticket",
-        element: (
-          <PrivateRoute>
-            <TicketList />
-          </PrivateRoute>
-        ),
+        lazy: {
+          Component: async () => {
+            const TicketList = (await import("./pages/ticket/TicketList"))
+              .default;
+            return () => (
+              <PrivateRoute>
+                <TicketList />
+              </PrivateRoute>
+            );
+          },
+        },
+        HydrateFallback: ScreenLoader,
       },
       {
         path: "ticket/:ticketId",
-        element: (
-          <PrivateRoute>
-            <TicketInfo />
-          </PrivateRoute>
-        ),
+        lazy: {
+          Component: async () => {
+            const TicketInfo = (await import("./pages/ticket/TicketInfo"))
+              .default;
+            return () => (
+              <PrivateRoute>
+                <TicketInfo />
+              </PrivateRoute>
+            );
+          },
+        },
+        HydrateFallback: ScreenLoader,
       },
     ],
   },
-  { path: "/login", element: <Login /> },
+  {
+    path: "/login",
+    lazy: {
+      Component: async () => (await import("./pages/auth/Login")).default,
+    },
+    HydrateFallback: ScreenLoader,
+  },
   { path: "*", element: <NotFound /> },
 ]);
 

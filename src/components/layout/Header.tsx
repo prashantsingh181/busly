@@ -34,12 +34,12 @@ export default function Header() {
         {/* logo */}
         <Link
           to="/"
-          className="font-poppins text-theme-600 flex items-center gap-2 text-2xl font-semibold md:text-3xl"
+          className="font-poppins text-theme-600 flex items-center gap-2 text-3xl font-semibold"
         >
           <FaBus />
-          <h1>Busly</h1>
+          <h1 className="hidden md:block">Busly</h1>
         </Link>
-        <nav className="hidden md:block">
+        <nav>
           <ul
             className={`flex gap-4 text-base font-bold ${
               transparentBg ? "text-textSecondary" : "text-white"
@@ -56,7 +56,7 @@ export default function Header() {
                   }`
                 }
               >
-                Our Buses
+                Buses
               </NavLink>
             </li>
             <li>

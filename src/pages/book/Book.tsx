@@ -99,7 +99,7 @@ export default function Book() {
       ),
     };
     bookTicket(ticket);
-    navigate("/");
+    navigate(`/ticket/${ticketId}?showMessage=true`);
   }
 
   let currentComponent;
