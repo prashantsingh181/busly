@@ -35,7 +35,7 @@ export default function Cities() {
               to="/cities"
               className="text-textSecondary hover-scale absolute right-0 flex items-center gap-1"
             >
-              <span>View all</span>
+              <span className="hidden sm:inline">View all</span>
               <FiChevronsRight />
             </Link>
           </div>
