@@ -7,7 +7,7 @@ It follows a scalable folder structure with reusable components, context managem
 
 ## 🖼️ Project Screenshot
 
-![Busly Screenshot](/project-screenshot.png)
+![Busly Screenshot](/public/project-screenshot.png)
 
 ---
 
