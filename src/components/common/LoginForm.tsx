@@ -1,7 +1,8 @@
+import { REDIRECT_URL_KEY } from "@/config/configKeys";
 import { useLoginInfo } from "@/context/login-details/LoginInfoContext";
 import { users } from "@/data/user";
 import { FaLocationDot } from "react-icons/fa6";
-import { useNavigate } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 
 interface LoginFormProps {
   message?: string;
@@ -11,12 +12,14 @@ interface LoginFormProps {
 function LoginForm({ message, onLogin }: Readonly<LoginFormProps>) {
   const { login } = useLoginInfo();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const redirect = searchParams.get(REDIRECT_URL_KEY);
   function handleLogin(userId: number) {
     login(userId);
     if (onLogin) {
       onLogin();
     } else {
-      navigate("/");
+      navigate(redirect ?? "/");
     }
   }
   return (

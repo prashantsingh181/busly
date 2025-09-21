@@ -16,7 +16,7 @@ export default function Search() {
   const to = searchParams.get("to");
   const date = searchParams.get("date");
   const isOldDate = date && isTodayOrBefore(date);
-  const selectedBusId = searchParams.get("selectedBusId");
+  const selectedBusRouteId = searchParams.get("selectedBus");
   const inValidSearchCondition = !from || !to || !date || isOldDate;
 
   let buses: BusWithRoute[] = [];
@@ -24,19 +24,29 @@ export default function Search() {
     buses = filterBuses(from, to);
   }
 
-  const selectedBus = buses.find((bus) => bus.id === selectedBusId);
+  const selectedBus =
+    selectedBusRouteId &&
+    buses.find((bus) => {
+      const [busId, routeId] = selectedBusRouteId.split("_");
+      return bus.id === busId && bus.routeInfo.route.id === routeId;
+    });
 
-  function handleSelect(busId: string | null) {
+  // function to handle selection of bus
+  function handleSelect(busRouteId: string | null) {
     setSearchParams((prevSearchParams) => {
       const newSearchParams = prevSearchParams;
-      if (!busId) {
-        newSearchParams.delete("selectedBusId");
+      if (!busRouteId) {
+        newSearchParams.delete("selectedBus");
       } else {
-        newSearchParams.set("selectedBusId", busId);
+        newSearchParams.set("selectedBus", busRouteId);
       }
       return newSearchParams;
     });
   }
+
+  // function isSelectedBus(bus: BusWithRoute){
+  //   return selectedBusRouteId &&
+  // }
 
   return (
     <main className="bg-white">
@@ -49,6 +59,7 @@ export default function Search() {
             initialDate={date}
           />
         </div>
+        {/* Edge cases */}
         {inValidSearchCondition ? (
           <div className="flex flex-col gap-6">
             <TextWithIcon
@@ -85,16 +96,22 @@ export default function Search() {
           </div>
         ) : (
           <div className="grid grid-cols-6 gap-6">
+            {/* Bus List */}
             <section className="col-span-full flex flex-col gap-6 lg:col-span-4">
               {buses.map((bus) => (
                 <div
-                  key={bus.id}
+                  key={`${bus.id}_${bus.routeInfo.route.id}`}
                   className={`rounded-lg ${
-                    selectedBusId && selectedBusId === bus.id
+                    selectedBusRouteId &&
+                    selectedBus &&
+                    selectedBus.id === bus.id &&
+                    selectedBus.routeInfo.route.id === bus.routeInfo.route.id
                       ? "outline-theme-400 shadow-[4px_4px_12px_0px_var(--theme-300)] outline-2"
                       : ""
                   }`}
-                  onClick={() => handleSelect(bus.id)}
+                  onClick={() =>
+                    handleSelect(`${bus.id}_${bus.routeInfo.route.id}`)
+                  }
                   tabIndex={0}
                 >
                   <BusCard key={bus.id} bus={bus} />

@@ -1,6 +1,7 @@
-import { FaLocationDot, FaMoneyBill } from "react-icons/fa6";
+import { FaLocationDot, FaMoneyBill, FaRoute } from "react-icons/fa6";
 import type { BusWithRoute } from "@/types/bus";
 import InfoRow from "./InfoRow";
+import { formatPrice } from "@/utils/formatUtils";
 
 interface BusCardProps {
   bus: BusWithRoute;
@@ -42,15 +43,9 @@ export default function BusCard({ bus }: Readonly<BusCardProps>) {
           <InfoRow
             label="Fare"
             icon={FaMoneyBill}
-            text={String(to.fare - from.fare)}
+            text={formatPrice(to.fare - from.fare)}
           />
-          {/* {event.endTime && (
-            <InfoRow
-              label="End Date"
-              icon={FaCalendarAlt}
-              text={eventEndDate}
-            />
-          )} */}
+          <InfoRow label="Route" icon={FaRoute} text={bus.routeInfo.route.id} />
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@ export const buses: Bus[] = [
     type: "Seater",
     totalSeats: 30,
     img: "/buses/bus1.webp",
-    routeIds: ["ROUTE1", "ROUTE2"],
+    routeIds: ["ROUTE1", "ROUTE2", "ROUTE3", "ROUTE4"],
     description:
       "Reliable seater bus offering smooth rides for short and long trips.",
   },
@@ -18,7 +18,7 @@ export const buses: Bus[] = [
     type: "Sleeper",
     totalSeats: 20,
     img: "/buses/bus2.webp",
-    routeIds: ["ROUTE3", "ROUTE4"],
+    routeIds: ["ROUTE3", "ROUTE4", "ROUTE5", "ROUTE6"],
     description:
       "Luxurious sleeper bus designed for overnight comfort and relaxation.",
   },
@@ -28,7 +28,7 @@ export const buses: Bus[] = [
     type: "Seater",
     totalSeats: 32,
     img: "/buses/bus3.webp",
-    routeIds: ["ROUTE5", "ROUTE6", "ROUTE1", "ROUTE2"],
+    routeIds: ["ROUTE5", "ROUTE6", "ROUTE7", "ROUTE8"],
     description:
       "Spacious seater bus with excellent seating and a smooth journey.",
   },
@@ -38,7 +38,7 @@ export const buses: Bus[] = [
     type: "Seater",
     totalSeats: 32,
     img: "/buses/bus4.webp",
-    routeIds: ["ROUTE5", "ROUTE6", "ROUTE1", "ROUTE2"],
+    routeIds: ["ROUTE7", "ROUTE8", "ROUTE9", "ROUTE10"],
     description:
       "Family-friendly bus offering safe and comfortable seating for all ages.",
   },
@@ -48,7 +48,7 @@ export const buses: Bus[] = [
     type: "Seater",
     totalSeats: 32,
     img: "/buses/bus5.webp",
-    routeIds: ["ROUTE5", "ROUTE6", "ROUTE1", "ROUTE2"],
+    routeIds: ["ROUTE9", "ROUTE10", "ROUTE11", "ROUTE12"],
     description:
       "Modern touring bus built for comfort and style on long-distance routes.",
   },
@@ -58,7 +58,7 @@ export const buses: Bus[] = [
     type: "Sleeper",
     totalSeats: 20,
     img: "/buses/bus6.webp",
-    routeIds: ["ROUTE5", "ROUTE6", "ROUTE1", "ROUTE2"],
+    routeIds: ["ROUTE11", "ROUTE12", "ROUTE13", "ROUTE14"],
     description:
       "Eco-friendly sleeper bus with premium interiors for a restful journey.",
   },
@@ -68,7 +68,7 @@ export const buses: Bus[] = [
     type: "Seater",
     totalSeats: 32,
     img: "/buses/bus7.webp",
-    routeIds: ["ROUTE5", "ROUTE6", "ROUTE1", "ROUTE2"],
+    routeIds: ["ROUTE13", "ROUTE14", "ROUTE15", "ROUTE16"],
     description:
       "Elegant seater bus combining modern design with reliable service.",
   },
@@ -78,7 +78,7 @@ export const buses: Bus[] = [
     type: "Sleeper",
     totalSeats: 20,
     img: "/buses/bus8.webp",
-    routeIds: ["ROUTE5", "ROUTE6", "ROUTE1", "ROUTE2"],
+    routeIds: ["ROUTE15", "ROUTE16", "ROUTE17", "ROUTE18"],
     description:
       "Trusted government sleeper service ensuring affordability and comfort.",
   },
@@ -88,7 +88,7 @@ export const buses: Bus[] = [
     type: "Seater",
     totalSeats: 32,
     img: "/buses/bus9.webp",
-    routeIds: ["ROUTE5", "ROUTE6", "ROUTE1", "ROUTE2"],
+    routeIds: ["ROUTE15", "ROUTE16", "ROUTE17", "ROUTE18"],
     description:
       "Relaxing seater bus known for scenic routes and peaceful rides.",
   },

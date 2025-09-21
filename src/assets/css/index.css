@@ -131,7 +131,7 @@
     border: 1px solid #e5e5e5;
   }
   .input-text-container {
-    @apply outline-theme-500 h-[2.5rem] w-full rounded-lg bg-neutral-100 px-3 py-2 focus-within:outline-2 disabled:cursor-not-allowed disabled:bg-neutral-600/70 disabled:text-neutral-500 sm:h-[3rem] sm:px-3.5 sm:py-2.5;
+    @apply outline-theme-500 h-[2.5rem] w-full max-w-full rounded-lg bg-neutral-100 px-3 py-2 focus-within:outline-2 disabled:cursor-not-allowed disabled:bg-neutral-600/70 disabled:text-neutral-500 sm:h-[3rem] sm:px-3.5 sm:py-2.5;
     box-shadow: 0px 1px 2px 0px #1018280d;
     border: 1px solid #e5e5e5;
   }

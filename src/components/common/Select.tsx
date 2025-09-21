@@ -192,7 +192,10 @@ const Select = ({
   };
 
   return (
-    <div className={`relative ${className ?? ""}`} ref={containerRef}>
+    <div
+      className={`relative max-w-full ${className ?? ""}`}
+      ref={containerRef}
+    >
       {label && (
         <label htmlFor={id} className="input-label">
           {label}

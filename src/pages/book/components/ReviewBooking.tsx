@@ -1,6 +1,8 @@
 import { formatPrice } from "@/utils/formatUtils";
 import type { PassengerFormType } from "../hooks/useBooking";
 import Seat from "./Seat";
+import Section from "@/components/common/Section";
+import KeyValuePair from "@/components/common/KeyValuePair";
 
 interface ReviewBookingProps {
   passengerDetails: PassengerFormType["values"];
@@ -17,18 +19,8 @@ export default function ReviewBooking({
       <div key={key} className="flex gap-3">
         <Seat status="selected" seat={Number(key.split("_")[1])} />
         <div>
-          <div className="space-x-2">
-            <span className="font-medium text-neutral-800/75">Name:</span>
-            <span className="text-textSecondary font-semibold">
-              {value.name}
-            </span>
-          </div>
-          <div className="space-x-2">
-            <span className="font-medium text-neutral-800/75">Age:</span>
-            <span className="text-textSecondary font-semibold">
-              {value.age}
-            </span>
-          </div>
+          <KeyValuePair keyString="Name" value={value.name} />
+          <KeyValuePair keyString="Age" value={value.age} />
         </div>
       </div>
     ),
@@ -37,33 +29,24 @@ export default function ReviewBooking({
     <div className="card flex flex-col gap-4 p-6">
       <Section heading="Your Contact Details:">
         <div className="flex flex-col gap-3 text-sm sm:text-base">
-          <div className="space-x-2">
-            <span className="font-medium text-neutral-800/75">
-              Mobile Number:
-            </span>
-            <span className="text-textSecondary font-semibold">
-              {passengerDetails.mobileNumber}
-            </span>
-          </div>
-          <div className="space-x-2">
-            <span className="font-medium text-neutral-800/75">Email:</span>
-            <span className="text-textSecondary font-semibold">
-              {passengerDetails.email}
-            </span>
-          </div>
+          <KeyValuePair
+            keyString="Mobile Number"
+            value={passengerDetails.mobileNumber}
+          />
+          <KeyValuePair keyString="Email" value={passengerDetails.email} />
         </div>
       </Section>
 
       <hr className="border-b border-neutral-200" />
 
-      <Section heading={`Passenger${seats.length > 1 && "s"} Information:`}>
+      <Section heading={`Passenger${seats.length > 1 ? "s" : ""} Information:`}>
         <div className="flex flex-col gap-4 text-sm sm:text-base">{seats}</div>
       </Section>
 
       <hr className="border-b border-neutral-200" />
 
       <Section
-        heading={` Fare Breakup (${seats.length} seat${seats.length > 1 && "s"}):`}
+        heading={` Fare Breakup (${seats.length} seat${seats.length > 1 ? "s" : ""}):`}
       >
         <div className="flex flex-col gap-3 text-sm sm:text-base">
           <div className="flex justify-between gap-2">
@@ -90,21 +73,5 @@ export default function ReviewBooking({
         </div>
       </Section>
     </div>
-  );
-}
-
-interface SectionProps {
-  heading: string;
-  children?: React.ReactNode;
-}
-
-function Section({ heading, children }: Readonly<SectionProps>) {
-  return (
-    <>
-      <h2 className="font-poppins text-textPrimary text-base font-semibold md:text-lg">
-        {heading}
-      </h2>
-      {children}
-    </>
   );
 }

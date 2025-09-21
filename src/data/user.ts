@@ -20,7 +20,7 @@ export const users: User[] = [
     id: 3,
     name: "Deeksha Singh",
     img: "/users/avatar-3.png",
-    location: "Tamilnadu",
+    location: "Tamil Nadu",
     description:
       "Weekend traveler who loves road trips and discovering hidden gems.",
   },

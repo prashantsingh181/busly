@@ -4,6 +4,7 @@ import type { Ticket } from "@/types/tickets";
 interface TicketInfoContextType {
   userTickets: Ticket[];
   bookTicket: (ticket: Ticket) => void;
+  getTicketByTicketId: (ticketId: string) => Ticket | undefined;
   getBookedSeats: (
     busId: string,
     from: string,

@@ -9,7 +9,7 @@ export default function NotFound() {
           src="/404.png"
           alt="Illustration of 404"
         />
-        <div className="mt-6 flex flex-col gap-6 items-center">
+        <div className="mt-6 flex flex-col items-center gap-6">
           <p className="text-textSecondary text-xl font-medium sm:text-2xl">
             <span className="text-theme-700 text-2xl font-semibold sm:text-4xl">
               Huh?

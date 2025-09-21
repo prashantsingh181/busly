@@ -65,11 +65,9 @@ export default function SearchForm({
       className={formClassName}
     >
       {/* dropdown to select from city */}
-      <div className="relative pb-4 md:pb-5">
+      <div className="relative w-full min-w-0 pb-4 md:pb-5">
         <Select
-          options={cityOptions.filter(
-            (city) => city.value !== form.values.to,
-          )}
+          options={cityOptions.filter((city) => city.value !== form.values.to)}
           name="from"
           value={
             cityOptions.find((city) => city.value === form.values.from) ?? null
@@ -90,14 +88,14 @@ export default function SearchForm({
 
       <button
         type="button"
-        className="hover-scale mb-5 hidden rounded-full bg-white p-3 text-xl shadow-lg md:inline md:self-end"
+        className="hover-scale mb-5 hidden flex-shrink-0 rounded-full bg-white p-3 text-xl shadow-lg md:inline md:self-end"
         onClick={handleInterChangeCities}
       >
         <LiaExchangeAltSolid />
       </button>
 
       {/* dropdown to select to city */}
-      <div className="relative pb-4 md:pb-5">
+      <div className="relative w-full min-w-0 pb-4 md:pb-5">
         <Select
           options={cityOptions.filter(
             (city) => city.value !== form.values.from,
@@ -124,12 +122,12 @@ export default function SearchForm({
       <div
         className={`${
           isHorizontal ? "col-span-full lg:col-span-1" : "col-span-full"
-        } relative pb-4 md:pb-5`}
+        } relative w-full min-w-0 pb-4 md:pb-5`}
       >
         <span className="input-label">Journey Date</span>
         <Flatpickr
           id="journeyDateInput"
-          className="input-text"
+          className="input-text w-full"
           options={{
             dateFormat: "d M, Y",
             minDate: new Date(),
@@ -151,7 +149,7 @@ export default function SearchForm({
 
       <button
         type="submit"
-        className={`primary-button col-span-full flex gap-2 justify-self-center rounded-full ${
+        className={`primary-button col-span-full flex flex-shrink-0 gap-2 justify-self-center rounded-full ${
           isHorizontal
             ? "lg:absolute lg:bottom-0 lg:left-1/2 lg:-translate-x-1/2 lg:translate-y-1/2"
             : ""

@@ -51,7 +51,7 @@ export default function PassengerInformationForm({
       <hr className="border-b border-neutral-200" />
 
       <h2 className="font-poppins text-textPrimary text-base font-semibold md:text-lg">
-        Passenger{selectedSeats.length > 1 && "s"} Information:
+        Passenger{selectedSeats.length > 1 ? "s" : ""} Information:
       </h2>
 
       {selectedSeats.map((seat, index) => (

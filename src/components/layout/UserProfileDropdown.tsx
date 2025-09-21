@@ -16,7 +16,7 @@ const UserProfileDropdown = () => {
             data-bs-toggle="dropdown"
           >
             <div className="flex items-center gap-[.375rem]">
-              <div className="h-[3rem] w-[3rem] overflow-hidden rounded-full bg-theme-500">
+              <div className="bg-theme-500 h-[3rem] w-[3rem] overflow-hidden rounded-full">
                 <img
                   alt="user profile"
                   src={userInfo?.img}
@@ -34,10 +34,10 @@ const UserProfileDropdown = () => {
           >
             <ul className="z-40 flex w-[10rem] flex-col overflow-hidden rounded-xl bg-neutral-100 text-nowrap shadow-[0px_4px_6px_-2px_#10182808,0px_12px_16px_-4px_#10182814]">
               <Link
-                to="/bookings"
+                to="/ticket"
                 className="text-theme-900 hover:bg-theme-700 w-full px-3 py-[0.6rem] text-center font-bold transition hover:text-white"
               >
-                My Bookings
+                My Tickets
               </Link>
               <button
                 onClick={logout}

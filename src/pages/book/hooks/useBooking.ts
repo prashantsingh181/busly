@@ -89,7 +89,7 @@ export default function useBooking() {
         .matches(/^\+?[1-9]\d{9}$/, "Please enter a valid mobile number"),
       email: Yup.string()
         .required("Email is required")
-        .email("PLease enter a valid email"),
+        .email("Please enter a valid email"),
       passengers: Yup.object(passengersSchema),
     });
   };
@@ -155,7 +155,7 @@ export default function useBooking() {
       setError("Please fill out all the required fields!");
       return;
     }
-    setError("")
+    setError("");
     setCurrentStep((prevCurrentStep) =>
       Math.min(bookingSteps.length, prevCurrentStep + 1),
     );

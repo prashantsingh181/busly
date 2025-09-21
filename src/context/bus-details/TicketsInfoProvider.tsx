@@ -22,6 +22,10 @@ export default function TicketsInfoProvider({
 
   const tickets = [...storedTickets, ...demoTickets];
 
+  function getTicketByTicketId(ticketId: string) {
+    return tickets.find((ticket) => ticket.ticketId === ticketId);
+  }
+
   const userTickets = tickets.filter(
     (ticket) => ticket.userId === userInfo?.id,
   );
@@ -62,7 +66,9 @@ export default function TicketsInfoProvider({
   }
 
   return (
-    <TicketInfoContext value={{ userTickets, getBookedSeats, bookTicket }}>
+    <TicketInfoContext
+      value={{ userTickets, getBookedSeats, bookTicket, getTicketByTicketId }}
+    >
       {children}
     </TicketInfoContext>
   );
