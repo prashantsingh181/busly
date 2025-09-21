@@ -125,6 +125,17 @@ npm run preview
 
 ---
 
+## 💿 Demo Data
+
+- [Buses](/src/data/bus.ts)
+- [Bus Routes](/src/data/busRoute.ts)
+- [Cities](/src/data/city.ts)
+- [Testimonials](/src/data/testimonials.ts)
+- [Tickets](/src/data/ticket.ts)
+- [User](/src/data/user.ts)
+
+---
+
 ## 📜 License
 
 This project is **private**. Please do not distribute without permission.

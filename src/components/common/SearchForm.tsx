@@ -16,6 +16,13 @@ interface SearchFormProps {
   initialDate?: string | null;
 }
 
+const getTomorrowDate = () => {
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  tomorrow.setHours(0, 0, 0, 0);
+  return tomorrow;
+};
+
 export default function SearchForm({
   isHorizontal = false,
   initialFrom,
@@ -23,7 +30,8 @@ export default function SearchForm({
   initialDate,
 }: Readonly<SearchFormProps>) {
   const navigate = useNavigate();
-  const today = new Date().toISOString();
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
   const cityOptions = useMemo(
     () => cities.map((city) => ({ label: city.name, value: city.code })),
     [],
@@ -39,7 +47,7 @@ export default function SearchForm({
     initialValues: {
       from: initialFrom ?? "",
       to: initialTo ?? "",
-      date: initialDate ?? today,
+      date: initialDate ?? "",
     },
     validationSchema: Yup.object({
       from: Yup.string().required("Please select from field"),
@@ -130,12 +138,20 @@ export default function SearchForm({
           className="input-text w-full"
           options={{
             dateFormat: "d M, Y",
-            minDate: new Date(),
+            minDate: getTomorrowDate(),
           }}
           placeholder="Select journey date"
           name="date"
-          onChange={(date) => form.setFieldValue("date", date[0].toISOString())}
-          value={form.values.date ?? undefined}
+          onChange={(selectedDates) => {
+            if (selectedDates && selectedDates.length > 0) {
+              const selectedDate = selectedDates[0];
+              selectedDate.setHours(0, 0, 0, 0);
+              form.setFieldValue("date", selectedDate.toISOString());
+            } else {
+              form.setFieldValue("date", "");
+            }
+          }}
+          value={form.values.date ? new Date(form.values.date) : undefined}
         />
         {form.submitCount > 0 && form.errors.date ? (
           <p
