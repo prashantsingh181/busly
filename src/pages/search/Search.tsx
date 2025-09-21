@@ -8,21 +8,22 @@ import TextWithIcon from "@/components/common/TextWithIcon";
 import { TbBusOff } from "react-icons/tb";
 import { LuSearchX } from "react-icons/lu";
 import { FaBusSimple } from "react-icons/fa6";
+import { isTodayOrBefore } from "@/utils/dateUtils";
 
 export default function Search() {
   const [searchParams, setSearchParams] = useSearchParams();
   const from = searchParams.get("from");
   const to = searchParams.get("to");
   const date = searchParams.get("date");
+  const isOldDate = date && isTodayOrBefore(date);
   const selectedBusId = searchParams.get("selectedBusId");
-  const inValidSearchCondition = !from || !to || !date;
+  const inValidSearchCondition = !from || !to || !date || isOldDate;
 
   let buses: BusWithRoute[] = [];
   if (!inValidSearchCondition) {
     buses = filterBuses(from, to);
   }
 
-  // const [selectedBusId, setSelectedBusId] = useState<string | null>(null);
   const selectedBus = buses.find((bus) => bus.id === selectedBusId);
 
   function handleSelect(busId: string | null) {
@@ -52,7 +53,11 @@ export default function Search() {
           <div className="flex flex-col gap-6">
             <TextWithIcon
               textClassName="text-xl sm:text-3xl font-semibold"
-              text="Please select cities and date"
+              text={
+                isOldDate
+                  ? "Please select a travel date starting from tomorrow. Booking for today or past dates is not available."
+                  : "Please select cities and date"
+              }
               icon={<LuSearchX className="text-xl sm:text-3xl" />}
             />
             <div>
@@ -108,10 +113,12 @@ export default function Search() {
                   </div>
                 </>
               ) : (
-                <div className="hidden lg:block sticky top-[6.5rem]">
+                <div className="sticky top-[6.5rem] hidden lg:block">
                   <TextWithIcon
-                  containerClassName="flex flex-col gap-6 items-center"
-                    icon={<FaBusSimple className="text-[8rem] text-theme-700" />}
+                    containerClassName="flex flex-col gap-6 items-center"
+                    icon={
+                      <FaBusSimple className="text-theme-700 text-[8rem]" />
+                    }
                     textClassName="text-xl font-medium"
                     text="Please Select a bus to preview"
                   />

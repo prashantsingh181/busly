@@ -14,7 +14,7 @@ export default function ReviewBooking({
   const normalPrice = price / 1.18;
   const seats = Object.entries(passengerDetails.passengers).map(
     ([key, value]) => (
-      <div className="flex gap-3">
+      <div key={key} className="flex gap-3">
         <Seat status="selected" seat={Number(key.split("_")[1])} />
         <div>
           <div className="space-x-2">

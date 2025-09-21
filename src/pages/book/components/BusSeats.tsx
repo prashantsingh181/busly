@@ -1,24 +1,26 @@
-import type { BusWithBookedSeats } from "@/types/bus";
+import type { Bus } from "@/types/bus";
 import { PiSteeringWheel } from "react-icons/pi";
 import React from "react";
 import Seat from "./Seat";
 
 interface BusSeatsProps {
-  bus: BusWithBookedSeats;
+  bus: Bus;
   selectedSeatNos: number[];
+  bookedSeatNos: number[];
   onSeatSelection: (seatNo: number) => void;
 }
 
 export default function BusSeats({
   bus,
   selectedSeatNos,
+  bookedSeatNos,
   onSeatSelection,
 }: Readonly<BusSeatsProps>) {
-  const { totalSeats, bookedSeats } = bus;
+  const { totalSeats } = bus;
   const seatsArray = Array.from({ length: totalSeats }, (_, i) => i + 1);
 
   function getSeatStatus(seatNo: number) {
-    if (bookedSeats.some((seat) => seat.seatNo === seatNo)) return "sold";
+    if (bookedSeatNos.includes(seatNo)) return "sold";
     else if (selectedSeatNos.includes(seatNo)) return "selected";
     else return "available";
   }

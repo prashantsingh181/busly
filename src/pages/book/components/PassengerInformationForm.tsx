@@ -60,7 +60,7 @@ export default function PassengerInformationForm({
 
           <div className="grid grid-cols-[auto_1fr] gap-3 sm:grid-cols-[auto_1fr_1fr]">
             <div className="row-span-2 sm:row-span-1">
-              <span>Seat No:</span>
+              <span className="input-label">Seat No:</span>
               <Seat seat={seat} status="selected" />
             </div>
             <InputWithLabel

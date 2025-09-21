@@ -1,11 +1,10 @@
-// import CityCard from "@/components/common/CityCard";
 import { buses } from "@/data/bus";
 import type { Bus } from "@/types/bus";
 import { FaChair, FaRoute } from "react-icons/fa";
 
 export default function Buses() {
   return (
-    <main className="main-margin-top bg-[url('/blob-scene-haikei.png')] bg-no-repeat bg-cover bg-center">
+    <main className="main-margin-top bg-[url('/background.png')] bg-cover bg-center bg-no-repeat">
       <div className="custom-container py-10">
         <h2 className="section-heading mb-8">
           Our <span className="text-theme-700 italic">Bus</span> collection
@@ -13,7 +12,6 @@ export default function Buses() {
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {buses.map((bus) => (
             <BusCard key={bus.id} bus={bus} />
-            // <CityCard key={city.code} city={city} noClampDescription />
           ))}
         </div>
       </div>

@@ -37,18 +37,18 @@ export const cities: City[] = [
       "A coastal city with deep cultural roots, Chennai is famous for its temples, classical music, Marina Beach, and South Indian cuisine.",
   },
   {
-    code: "CCU",
-    name: "Kolkata",
-    img: "/cities/kolkata.webp",
+    code: "KNP",
+    name: "Kanpur",
+    img: "/cities/kanpur.webp",
     description:
-      "Known as the City of Joy, Kolkata is celebrated for its art, literature, colonial architecture, and the iconic Howrah Bridge.",
+      "An industrial hub of Uttar Pradesh, Kanpur is known for its leather industry, textile mills, and historic colonial landmarks.",
   },
   {
-    code: "HYD",
-    name: "Hyderabad",
-    img: "/cities/hyderabad.webp",
+    code: "LKO",
+    name: "Lucknow",
+    img: "/cities/lucknow.webp",
     description:
-      "Blending history with modernity, Hyderabad is renowned for the Charminar, tech hubs, and its world-famous biryani.",
+      "The City of Nawabs, Lucknow is renowned for its Mughlai cuisine, elegant tehzeeb (etiquette), and architectural gems like Bara Imambara.",
   },
   {
     code: "PNQ",

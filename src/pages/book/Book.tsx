@@ -1,24 +1,35 @@
-import { Navigate, useSearchParams } from "react-router";
-import { getRouteByRouteId } from "@/data/busRoute";
+import { Navigate, useNavigate, useSearchParams } from "react-router";
+import { getPricePerSeat, getRouteByRouteId } from "@/data/busRoute";
 import { getCityByCityCode } from "@/data/city";
 import BusSeats from "./components/BusSeats";
 import {
   FaArrowRightLong,
   FaCircleChevronLeft,
   FaCircleChevronRight,
+  FaTicket,
 } from "react-icons/fa6";
 import SelectedBusAside from "@/components/common/SelectedBusAside";
-import { useBusesInfo } from "@/context/bus-details/BusesInfoContext";
+import { getBusByBusId } from "@/data/bus";
 import { format } from "date-fns";
 import StepperComponent from "@/components/common/StepperComponent";
 import useBooking from "./hooks/useBooking";
 import { formatPrice } from "@/utils/formatUtils";
 import PassengerInformationForm from "./components/PassengerInformationForm";
 import ReviewBooking from "./components/ReviewBooking";
+import { useTicketsInfo } from "@/context/bus-details/TicketInfoContext";
+import { isTodayOrBefore } from "@/utils/dateUtils";
+import uuid4 from "uuid4";
+import { useLoginInfo } from "@/context/login-details/LoginInfoContext";
+import type { Ticket } from "@/types/tickets";
+import { useCallback, useState } from "react";
+import LoginModal from "./components/LoginModal";
 
 export default function Book() {
   const [searchParams] = useSearchParams();
-  const { getBusByBusId } = useBusesInfo();
+  const { isLoggedIn, userInfo } = useLoginInfo();
+  const { getBookedSeats, bookTicket } = useTicketsInfo();
+  const [showLogin, setShowLogin] = useState(false);
+  const navigate = useNavigate();
   const {
     bookingSteps,
     selectedSeats,
@@ -29,6 +40,10 @@ export default function Book() {
     error,
     form,
   } = useBooking();
+
+  const hideModal = useCallback(() => {
+    setShowLogin(false);
+  }, []);
 
   const busId = searchParams.get("busId");
   const routeId = searchParams.get("routeId");
@@ -44,19 +59,14 @@ export default function Book() {
   const route = getRouteByRouteId(routeId);
   const fromCity = getCityByCityCode(from);
   const toCity = getCityByCityCode(to);
+  const isOldDate = isTodayOrBefore(date);
 
-  if (!bus || !route || !fromCity || !toCity || !date) {
+  if (!bus || !route || !fromCity || !toCity || isOldDate) {
     return <Navigate to="/" />;
   }
 
-  const cityIndex = route?.stops.reduce<Record<string, number>>(
-    (acc, stop, index) => ({ ...acc, [stop.city]: index }),
-    {},
-  );
-  const fromCityIndex = cityIndex[fromCity.code];
-  const toCityIndex = cityIndex[toCity.code];
-  const pricePerSeat =
-    route.stops[toCityIndex].fare - route.stops[fromCityIndex].fare;
+  const bookedSeats = getBookedSeats(bus.id, from, to, date);
+  const pricePerSeat = getPricePerSeat(route, from, to);
   const price = selectedSeats.length * pricePerSeat;
 
   const busWithRoute = {
@@ -64,22 +74,41 @@ export default function Book() {
     routeInfo: { from, to, route },
   };
 
-  // getting bus with actual seats booked for the current stop selection
-  const busWithBookedSeats = {
-    ...bus,
-    bookedSeats: bus.bookedSeats.filter(
-      (seat) =>
-        toCityIndex >= cityIndex[seat.from] &&
-        fromCityIndex > cityIndex[seat.from],
-    ),
-  };
+  function handleBookTicket() {
+    if (!isLoggedIn || !userInfo) {
+      return setShowLogin(true);
+    }
+    if (!busId || !from || !to || !routeId || !date) return;
+    const ticketId = uuid4();
+    const ticket: Ticket = {
+      ticketId,
+      busId,
+      from,
+      to,
+      routeId,
+      userId: userInfo.id,
+      date,
+      email: form.values.email,
+      mobileNumber: form.values.mobileNumber,
+      bookedSeats: Object.entries(form.values.passengers).map(
+        ([key, value]) => ({
+          seatNo: parseInt(key.replace("seat_", "")),
+          passengerName: value.name,
+          passengerAge: parseInt(value.age),
+        }),
+      ),
+    };
+    bookTicket(ticket);
+    navigate("/");
+  }
 
   let currentComponent;
   switch (currentStep) {
     case 1:
       currentComponent = (
         <BusSeats
-          bus={busWithBookedSeats}
+          bus={bus}
+          bookedSeatNos={bookedSeats}
           selectedSeatNos={selectedSeats}
           onSeatSelection={handleSeatSelection}
         />
@@ -98,7 +127,7 @@ export default function Book() {
   }
 
   return (
-    <main className="main-padding-top bg-[url('/blob-scene-haikei.png')] bg-no-repeat bg-cover bg-center pb-4">
+    <main className="main-padding-top bg-theme-100 bg-cover bg-center bg-no-repeat pb-4">
       <div className="custom-container flex flex-col gap-8 py-10">
         <div className="text-textSecondary font-poppins flex flex-col items-center gap-6 text-base font-semibold sm:flex-row md:text-lg">
           <div className="flex items-center gap-2">
@@ -124,7 +153,7 @@ export default function Book() {
 
       {/* details in bottom */}
       {selectedSeats.length > 0 && (
-        <div className="fixed z-50 right-0 bottom-0 left-0 flex items-center justify-between gap-4 border-t border-dashed border-neutral-200 bg-white px-3 py-2 sm:px-6 sm:py-4">
+        <div className="fixed right-0 bottom-0 left-0 z-50 flex items-center justify-between gap-4 border-t border-dashed border-neutral-200 bg-white px-3 py-2 sm:px-6 sm:py-4">
           <div>
             {currentStep > 1 && (
               <button
@@ -167,9 +196,19 @@ export default function Book() {
                 <FaCircleChevronRight />
               </button>
             )}
+            {currentStep === bookingSteps.length && (
+              <button
+                className="primary-button flex gap-2 p-2"
+                onClick={handleBookTicket}
+              >
+                <FaTicket />
+                <span>Book Ticket</span>
+              </button>
+            )}
           </div>
         </div>
       )}
+      <LoginModal show={showLogin} hideModal={hideModal} />
     </main>
   );
 }

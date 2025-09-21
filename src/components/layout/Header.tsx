@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaBus } from "react-icons/fa6";
-import { IoTicketOutline } from "react-icons/io5";
 import { Link, NavLink, useLocation } from "react-router";
+import UserProfileDropdown from "./UserProfileDropdown";
 
 export default function Header() {
   const location = useLocation();
@@ -34,7 +34,7 @@ export default function Header() {
         {/* logo */}
         <Link
           to="/"
-          className="font-poppins text-theme-600 flex items-center gap-2 text-xl font-semibold md:text-2xl"
+          className="font-poppins text-theme-600 flex items-center gap-2 text-2xl font-semibold md:text-3xl"
         >
           <FaBus />
           <h1>Busly</h1>
@@ -75,10 +75,7 @@ export default function Header() {
             </li>
           </ul>
         </nav>
-        <Link to="/search" className="primary-button flex items-center gap-2">
-          <IoTicketOutline />
-          <span>Book Ticket</span>
-        </Link>
+        <UserProfileDropdown />
       </div>
     </header>
   );

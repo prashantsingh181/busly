@@ -22,7 +22,6 @@ export default function SearchForm({
   initialTo,
   initialDate,
 }: Readonly<SearchFormProps>) {
-  console.log(initialDate);
   const navigate = useNavigate();
   const today = new Date().toISOString();
   const cityOptions = useMemo(
@@ -53,8 +52,6 @@ export default function SearchForm({
     },
   });
 
-  console.log(form.values.date);
-
   function handleInterChangeCities() {
     form.setValues((form) => ({ ...form, from: form.to, to: form.from }));
   }
@@ -70,7 +67,9 @@ export default function SearchForm({
       {/* dropdown to select from city */}
       <div className="relative pb-4 md:pb-5">
         <Select
-          options={cityOptions}
+          options={cityOptions.filter(
+            (city) => city.value !== form.values.to,
+          )}
           name="from"
           value={
             cityOptions.find((city) => city.value === form.values.from) ?? null
@@ -100,7 +99,9 @@ export default function SearchForm({
       {/* dropdown to select to city */}
       <div className="relative pb-4 md:pb-5">
         <Select
-          options={cityOptions}
+          options={cityOptions.filter(
+            (city) => city.value !== form.values.from,
+          )}
           name="to"
           value={
             cityOptions.find((city) => city.value === form.values.to) ?? null

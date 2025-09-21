@@ -7,6 +7,7 @@ import Cities from "./pages/cities/Cities";
 import Buses from "./pages/buses/Buses";
 import NotFound from "./pages/fallback/NotFound";
 import Error from "./pages/fallback/Error";
+import Login from "./pages/auth/Login";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,8 @@ const router = createBrowserRouter([
       { path: "book", element: <Book /> },
     ],
   },
-  {path: "*", element: <NotFound />}
+  { path: "/login", element: <Login /> },
+  { path: "*", element: <NotFound /> },
 ]);
 
 function App() {
