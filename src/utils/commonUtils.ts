@@ -16,10 +16,10 @@ export function customThrottle<T extends (...args: any) => void>(
       clearTimeout(timer);
       timer = setTimeout(() => {
         fn.call(this, ...args);
-      }, 100);
+      }, time);
       return;
     }
-
+    clearTimeout(timer);
     inThrottle = true;
     fn.call(this, ...args);
     setTimeout(() => {
