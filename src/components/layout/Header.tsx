@@ -2,32 +2,35 @@ import { useEffect, useState } from "react";
 import { FaBus } from "react-icons/fa6";
 import { Link, NavLink, useLocation } from "react-router";
 import UserProfileDropdown from "./UserProfileDropdown";
+import { customThrottle } from "@/utils/commonUtils";
 
 export default function Header() {
   const location = useLocation();
-  const isTransparent = location.pathname === "/";
+  const isHomePage = location.pathname === "/";
 
-  const [transparentBg, setTransparentBg] = useState(isTransparent);
+  const [transparentBg, setTransparentBg] = useState(isHomePage);
 
   useEffect(() => {
-    function handleScroll() {
-      if (!isTransparent) return;
-      if (window.scrollY > 75) {
-        setTransparentBg(false);
-      } else {
-        setTransparentBg(true);
+    if (isHomePage) {
+      function handleScroll() {
+        if (window.scrollY > 75) {
+          setTransparentBg(false);
+        } else {
+          setTransparentBg(true);
+        }
       }
+      // implementing throttled Scroll function as scroll is fired multiple times in short duration
+      const throttledScroll = customThrottle(handleScroll, 100);
+      throttledScroll();
+      window.addEventListener("scroll", throttledScroll);
+      return () => window.removeEventListener("scroll", throttledScroll);
     }
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [isTransparent]);
-  useEffect(() => {
-    setTransparentBg(isTransparent);
-  }, [isTransparent]);
+  }, [isHomePage]);
+
   return (
     <header
       className={`fixed top-0 z-40 w-full ${
-        transparentBg ? "bg-transparent" : "bg-dark-muted"
+        isHomePage && transparentBg ? "bg-transparent" : "bg-dark-muted"
       }`}
     >
       <div className="custom-container relative flex items-center justify-between gap-6 py-3 md:py-5">
@@ -42,7 +45,7 @@ export default function Header() {
         <nav>
           <ul
             className={`flex gap-4 text-base font-bold ${
-              transparentBg ? "text-textSecondary" : "text-white"
+              isHomePage && transparentBg ? "text-textSecondary" : "text-white"
             } lg:gap-5 lg:text-lg`}
           >
             <li>
