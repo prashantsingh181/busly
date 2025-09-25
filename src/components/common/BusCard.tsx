@@ -9,7 +9,7 @@ interface BusCardProps {
 
 export default function BusCard({ bus }: Readonly<BusCardProps>) {
   const from = bus.routeInfo.route.stops.find(
-    (stop) => stop.city === bus.routeInfo.from,
+  (stop) => stop.city === bus.routeInfo.from,
   )!;
   const to = bus.routeInfo.route.stops.find(
     (stop) => stop.city === bus.routeInfo.to,
